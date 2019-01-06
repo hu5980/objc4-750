@@ -57,15 +57,16 @@ namespace {
 };
 
 #include "isa.h"
-
+// Class ,uintptr_t 结构体共用一块内存空间，isa_t是一个class 同时是一个64位地址bits，是一个64位结构体
 union isa_t {
     isa_t() { }
     isa_t(uintptr_t value) : bits(value) { }
 
     Class cls;
-    uintptr_t bits;
+    uintptr_t bits;  //unsigned long 无符号的长整型
 #if defined(ISA_BITFIELD)
     struct {
+        // ISA_BITFIELD 这是一个宏 ，相应的代码在isa.h 中
         ISA_BITFIELD;  // defined in isa.h
     };
 #endif
@@ -74,7 +75,8 @@ union isa_t {
 
 struct objc_object {
 private:
-    isa_t isa;
+    isa_t isa; // isa指针
+    
 
 public:
 
