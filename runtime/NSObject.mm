@@ -1701,7 +1701,7 @@ _objc_rootRelease(id obj)
     obj->rootRelease();
 }
 
-
+// alloc 调用的是_objc_rootAllocWithZone
 id
 _objc_rootAllocWithZone(Class cls, malloc_zone_t *zone)
 {
@@ -1713,6 +1713,7 @@ _objc_rootAllocWithZone(Class cls, malloc_zone_t *zone)
     obj = class_createInstance(cls, 0);
 #else
     if (!zone) {
+        // 创建Instance
         obj = class_createInstance(cls, 0);
     }
     else {
