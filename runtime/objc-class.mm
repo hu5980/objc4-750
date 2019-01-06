@@ -893,10 +893,11 @@ BOOL class_isMetaClass(Class cls)
     return cls->isMetaClass();
 }
 
-
+// 实际上是获取Class 实例对象的成员变量的大小
 size_t class_getInstanceSize(Class cls)
 {
     if (!cls) return 0;
+    // 对齐后的大小
     return cls->alignedInstanceSize();
 }
 
