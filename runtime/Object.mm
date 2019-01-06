@@ -228,6 +228,7 @@ static const char
 	return NO;
 }
 
+// 判断 isa 指针是否是类对象
 - (BOOL)isMemberOf:aClass
 {
 	return isa == (Class)aClass;
@@ -236,7 +237,8 @@ static const char
 - (BOOL)isKindOfClassNamed:(const char *)aClassName
 {
 	Class cls;
-	for (cls = isa; cls; cls = cls->superclass) 
+	for (cls = isa; cls; cls = cls->superclass)
+        // 判断名称是否相等
 		if (strcmp(aClassName, class_getName(cls)) == 0)
 			return YES;
 	return NO;
