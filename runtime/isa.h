@@ -54,6 +54,18 @@
     // uintptr_t lock : 2;        // lock for atomic property, @synch
     // uintptr_t extraBytes : 1;  // allocated with extra bytes
 
+/*
+ uintptr_t nonpointer        : 1;  是否是Tagged Pointer
+ uintptr_t has_assoc         : 1;  是否有关联引用
+ uintptr_t has_cxx_dtor      : 1;  是否有析构函数
+ uintptr_t shiftcls          : 33; 类的指针
+ uintptr_t magic             : 6;  是否初始化完成
+ uintptr_t weakly_referenced : 1;  是否被弱引用
+ uintptr_t deallocating      : 1;  是否正在释放内存
+ uintptr_t has_sidetable_rc  : 1;  引用计数是否过大
+ uintptr_t extra_rc          : 19  引用计数
+ */
+
 # if __arm64__
 #   define ISA_MASK        0x0000000ffffffff8ULL
 #   define ISA_MAGIC_MASK  0x000003f000000001ULL
