@@ -218,12 +218,11 @@ struct entsize_list_tt {
     };
 };
 
-
+// 方法结构体
 struct method_t {
-    SEL name;
-    const char *types;
-    MethodListIMP imp;
-
+    SEL name; //方法名称
+    const char *types; //方法类型
+    MethodListIMP imp; //方法地址
     struct SortBySELAddress :
         public std::binary_function<const method_t&,
                                     const method_t&, bool>
@@ -234,6 +233,7 @@ struct method_t {
     };
 };
 
+// 成员变量
 struct ivar_t {
 #if __x86_64__
     // *offset was originally 64-bit on some x86_64 platforms.
@@ -243,8 +243,8 @@ struct ivar_t {
     // Some code uses all 64 bits. class_addIvar() over-allocates the 
     // offset for their benefit.
 #endif
-    int32_t *offset;
-    const char *name;
+    int32_t *offset; // 偏移量
+    const char *name; //变量名
     const char *type;
     // alignment is sometimes -1; use alignment() instead
     uint32_t alignment_raw;
@@ -257,8 +257,8 @@ struct ivar_t {
 };
 
 struct property_t {
-    const char *name;
-    const char *attributes;
+    const char *name;  //属性名
+    const char *attributes; //属性内容
 };
 
 // Two bits of entsize are used for fixup markers.
@@ -293,16 +293,17 @@ typedef uintptr_t protocol_ref_t;  // protocol_t *, but unremapped
 
 #define PROTOCOL_FIXED_UP_MASK (PROTOCOL_FIXED_UP_1 | PROTOCOL_FIXED_UP_2)
 
+//协议结构体
 struct protocol_t : objc_object {
-    const char *mangledName;
-    struct protocol_list_t *protocols;
-    method_list_t *instanceMethods;
-    method_list_t *classMethods;
-    method_list_t *optionalInstanceMethods;
-    method_list_t *optionalClassMethods;
-    property_list_t *instanceProperties;
-    uint32_t size;   // sizeof(protocol_t)
-    uint32_t flags;
+    const char *mangledName;  // 协议名称
+    struct protocol_list_t *protocols; //协议列表
+    method_list_t *instanceMethods; //实例方法
+    method_list_t *classMethods; //类方法
+    method_list_t *optionalInstanceMethods; //可选实例方法
+    method_list_t *optionalClassMethods; // 可选类方法
+    property_list_t *instanceProperties; // 实例属性
+    uint32_t size;   // sizeof(protocol_t) //
+    uint32_t flags; //
     // Fields below this point are not always present on disk.
     const char **_extendedMethodTypes;
     const char *_demangledName;
@@ -495,13 +496,17 @@ struct locstamped_category_list_t {
 #define RW_REQUIRES_RAW_ISA   (1<<15)
 
 // class is a Swift class from the pre-stable Swift ABI
+// 类是来自未稳定的Swift ABI的Swift类
 #define FAST_IS_SWIFT_LEGACY    (1UL<<0)
 // class is a Swift class from the stable Swift ABI
+// 类是来自稳定的Swift ABI的Swift类
 #define FAST_IS_SWIFT_STABLE    (1UL<<1)
 // class or superclass has default retain/release/autorelease/retainCount/
 //   _tryRetain/_isDeallocating/retainWeakReference/allowsWeakReference
+// 当前类或者父类是否有 retain release 等方法
 #define FAST_HAS_DEFAULT_RR     (1UL<<2)
 // data pointer
+// 数据段指针  11111111 11111111 11111111 11111111 11111000
 #define FAST_DATA_MASK          0x00007ffffffffff8UL
 
 #else
@@ -717,6 +722,15 @@ class list_array_tt {
         }
     }
 
+    /*
+     addedLists
+     [
+        [method_t,method_t],
+        [method_t,method_t],
+        [method_t,method_t]
+     ]
+     addedCount 3
+     */
     void attachLists(List* const * addedLists, uint32_t addedCount) {
         if (addedCount == 0) return;
 
@@ -724,10 +738,14 @@ class list_array_tt {
             // many lists -> many lists
             uint32_t oldCount = array()->count;
             uint32_t newCount = oldCount + addedCount;
+            //分配内存
             setArray((array_t *)realloc(array(), array_t::byteSize(newCount)));
             array()->count = newCount;
+            //array()->lists 原来的方法列表
+            //memmove 内存移动
             memmove(array()->lists + addedCount, array()->lists, 
                     oldCount * sizeof(array()->lists[0]));
+            //内存拷贝
             memcpy(array()->lists, addedLists, 
                    addedCount * sizeof(array()->lists[0]));
         }
@@ -824,15 +842,17 @@ class protocol_array_t :
 
 
 struct class_rw_t {
+    // class_rw_t  class_ro_t 在realizeClass  中初始化
     // Be warned that Symbolication knows the layout of this structure.
     uint32_t flags;
     uint32_t version;
 
+    //不能修改
     const class_ro_t *ro;
 
-    method_array_t methods;
-    property_array_t properties;
-    protocol_array_t protocols;
+    method_array_t methods; //方法列表
+    property_array_t properties; // 属性列表
+    protocol_array_t protocols;  //协议列表
 
     Class firstSubclass;
     Class nextSiblingClass;
@@ -920,6 +940,7 @@ private:
 public:
 
     class_rw_t* data() {
+        // 获取class_rw_t 数据
         return (class_rw_t *)(bits & FAST_DATA_MASK);
     }
     void setData(class_rw_t *newData)
@@ -1321,19 +1342,23 @@ struct objc_class : objc_object {
     }
 
     // May be unaligned depending on class's ivars.
+    // 未对齐的成员变量的大小
     uint32_t unalignedInstanceSize() {
         assert(isRealized());
         return data()->ro->instanceSize;
     }
 
     // Class's ivar size rounded up to a pointer-size boundary.
+    // 对齐后的成员变量的大小
     uint32_t alignedInstanceSize() {
         return word_align(unalignedInstanceSize());
     }
 
+    // 实例大小
     size_t instanceSize(size_t extraBytes) {
         size_t size = alignedInstanceSize() + extraBytes;
         // CF requires all objects be at least 16 bytes.
+        // 小于16 的时候返回 16
         if (size < 16) size = 16;
         return size;
     }
