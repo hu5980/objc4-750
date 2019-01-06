@@ -759,6 +759,7 @@ prepareMethodLists(Class cls, method_list_t **addedLists, int addedCount,
 // Attach method lists and properties and protocols from categories to a class.
 // Assumes the categories in cats are all loaded and sorted by load order, 
 // oldest categories first.
+// cats [category_t,category_t,category_t]
 static void 
 attachCategories(Class cls, category_list *cats, bool flush_caches)
 {
@@ -766,12 +767,35 @@ attachCategories(Class cls, category_list *cats, bool flush_caches)
     if (PrintReplacedMethods) printReplacements(cls, cats);
 
     bool isMeta = cls->isMetaClass();
-
+    // 方法数组
     // fixme rearrange to remove these intermediate allocations
+    /*
+    [
+        [method_t,method_t],
+        [method_t,method_t],
+        [method_t,method_t]
+     ]
+     */
     method_list_t **mlists = (method_list_t **)
         malloc(cats->count * sizeof(*mlists));
+    // 协议数组
+    /*
+     [
+        [property_t,property_t],
+        [property_t,property_t],
+        [property_t,property_t]
+     ]
+     */
     property_list_t **proplists = (property_list_t **)
         malloc(cats->count * sizeof(*proplists));
+    // 属性数组
+    /*
+     [
+        [protocol_t,protocol_t],
+        [protocol_t,protocol_t],
+        [protocol_t,protocol_t]
+     ]
+     */
     protocol_list_t **protolists = (protocol_list_t **)
         malloc(cats->count * sizeof(*protolists));
 
@@ -781,7 +805,9 @@ attachCategories(Class cls, category_list *cats, bool flush_caches)
     int protocount = 0;
     int i = cats->count;
     bool fromBundle = NO;
+    //倒序取出来
     while (i--) {
+        // 取出某一个分类
         auto& entry = cats->list[i];
 
         method_list_t *mlist = entry.cat->methodsForMeta(isMeta);
@@ -802,9 +828,11 @@ attachCategories(Class cls, category_list *cats, bool flush_caches)
         }
     }
 
+    // 得到类对象里面的数据
     auto rw = cls->data();
 
     prepareMethodLists(cls, mlists, mcount, NO, fromBundle);
+    // 将所有分类的对象方法，附加到类对象的方法列表中
     rw->methods.attachLists(mlists, mcount);
     free(mlists);
     if (flush_caches  &&  mcount > 0) flushCaches(cls);
@@ -823,6 +851,7 @@ attachCategories(Class cls, category_list *cats, bool flush_caches)
 * Attaches any outstanding categories.
 * Locking: runtimeLock must be held by the caller
 **********************************************************************/
+// 给方法协议 属性赋值
 static void methodizeClass(Class cls)
 {
     runtimeLock.assertLocked();
@@ -897,6 +926,7 @@ static void methodizeClass(Class cls)
 * Updates method caches for cls and its subclasses.
 * Locking: runtimeLock must be held by the caller
 **********************************************************************/
+//  重新方法化 加载分类中的方法
 static void remethodizeClass(Class cls)
 {
     category_list *cats;
@@ -1855,6 +1885,7 @@ static void reconcileInstanceVariables(Class cls, Class supercls, const class_ro
 * Returns the real class structure for the class. 
 * Locking: runtimeLock must be write-locked by the caller
 **********************************************************************/
+// 初始化类
 static Class realizeClass(Class cls)
 {
     runtimeLock.assertLocked();
@@ -1864,13 +1895,14 @@ static Class realizeClass(Class cls)
     Class supercls;
     Class metacls;
     bool isMeta;
-
+    //判断是否为空 为nil 直接返回
     if (!cls) return nil;
+    // 是否已经初始化
     if (cls->isRealized()) return cls;
     assert(cls == remapClass(cls));
 
     // fixme verify class is not in an un-dlopened part of the shared cache?
-
+  // 取出class 中的 数据
     ro = (const class_ro_t *)cls->data();
     if (ro->flags & RO_FUTURE) {
         // This was a future class. rw data is already allocated.
@@ -1879,9 +1911,14 @@ static Class realizeClass(Class cls)
         cls->changeInfo(RW_REALIZED|RW_REALIZING, RW_FUTURE);
     } else {
         // Normal class. Allocate writeable class data.
+        // 正常情况下的类初始化
+        // 创建class_rw_t
         rw = (class_rw_t *)calloc(sizeof(class_rw_t), 1);
+        // 给rw->ro 赋值
         rw->ro = ro;
+        // 设置状态
         rw->flags = RW_REALIZED|RW_REALIZING;
+        // 给cls->data重新赋值class_rw_t
         cls->setData(rw);
     }
 
@@ -2172,6 +2209,7 @@ map_images(unsigned count, const char * const paths[],
 extern bool hasLoadMethods(const headerType *mhdr);
 extern void prepare_load_methods(const headerType *mhdr);
 
+
 void
 load_images(const char *path __unused, const struct mach_header *mh)
 {
@@ -2183,10 +2221,12 @@ load_images(const char *path __unused, const struct mach_header *mh)
     // Discover load methods
     {
         mutex_locker_t lock2(runtimeLock);
+        //准备进行load 方法的加载
         prepare_load_methods((const headerType *)mh);
     }
 
     // Call +load methods (without runtimeLock - re-entrant)
+    // 调用load 方法
     call_load_methods();
 }
 
@@ -2445,6 +2485,7 @@ readProtocol(protocol_t *newproto, Class protocol_class,
 *
 * Locking: runtimeLock acquired by map_images
 **********************************************************************/
+//totalClasses 所有的类
 void _read_images(header_info **hList, uint32_t hCount, int totalClasses, int unoptimizedTotalClasses)
 {
     header_info *hi;
@@ -2700,7 +2741,8 @@ void _read_images(header_info **hList, uint32_t hCount, int totalClasses, int un
 
     ts.log("IMAGE TIMES: realize future classes");
 
-    // Discover categories. 
+    // Discover categories.
+    // 搜索分类
     for (EACH_HEADER) {
         category_t **catlist = 
             _getObjc2CategoryList(hi, &count);
@@ -2732,6 +2774,7 @@ void _read_images(header_info **hList, uint32_t hCount, int totalClasses, int un
             {
                 addUnattachedCategoryForClass(cat, cls, hi);
                 if (cls->isRealized()) {
+                    // 分类方法添加 （类对象）
                     remethodizeClass(cls);
                     classExists = YES;
                 }
@@ -2747,6 +2790,7 @@ void _read_images(header_info **hList, uint32_t hCount, int totalClasses, int un
             {
                 addUnattachedCategoryForClass(cat, cls->ISA(), hi);
                 if (cls->ISA()->isRealized()) {
+                    // 分类方法添加 （元类对象）
                     remethodizeClass(cls->ISA());
                 }
                 if (PrintConnecting) {
@@ -2848,8 +2892,9 @@ static void schedule_class_load(Class cls)
     if (cls->data()->flags & RW_LOADED) return;
 
     // Ensure superclass-first ordering
+    // 这里有一个递归调用 ，如果有父类 会先将父类加进去
     schedule_class_load(cls->superclass);
-
+    // 将cls添加到loadable_classes数组的后面
     add_class_to_loadable_list(cls);
     cls->setInfo(RW_LOADED); 
 }
@@ -2863,6 +2908,7 @@ bool hasLoadMethods(const headerType *mhdr)
     return false;
 }
 
+//准备进行load 方法的加载
 void prepare_load_methods(const headerType *mhdr)
 {
     size_t count, i;
@@ -2871,7 +2917,9 @@ void prepare_load_methods(const headerType *mhdr)
 
     classref_t *classlist = 
         _getObjc2NonlazyClassList(mhdr, &count);
+    //准备进行load 方法的加载 优先会考虑_getObjc2NonlazyClassList的顺序
     for (i = 0; i < count; i++) {
+        // 定制类的加载
         schedule_class_load(remapClass(classlist[i]));
     }
 
@@ -3535,6 +3583,7 @@ BOOL protocol_conformsToProtocol(Protocol *self, Protocol *other)
 **********************************************************************/
 BOOL protocol_isEqual(Protocol *self, Protocol *other)
 {
+    // 内存地址一样
     if (self == other) return YES;
     if (!self  ||  !other) return NO;
 
