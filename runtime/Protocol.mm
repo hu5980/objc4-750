@@ -96,6 +96,7 @@
     return protocol_getName(self);
 }
 
+//isEqual的实现
 - (BOOL)isEqual:other
 {
 #if __OBJC2__
