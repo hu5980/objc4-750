@@ -574,6 +574,7 @@ map_images_nolock(unsigned mhCount, const char * const mhPaths[],
     }
 
     if (hCount > 0) {
+        //镜像
         _read_images(hList, hCount, totalClasses, unoptimizedTotalClasses);
     }
 
@@ -882,7 +883,7 @@ void _objc_init(void)
     environ_init();
     tls_init();
     static_init();
-    lock_init();
+    lock_init();  
     exception_init();
 
     _dyld_objc_notify_register(&map_images, load_images, unmap_image);

@@ -186,6 +186,7 @@ static void call_class_loads(void)
     int i;
     
     // Detach current loadable list.
+    // classes 这是一个数组
     struct loadable_class *classes = loadable_classes;
     int used = loadable_classes_used;
     loadable_classes = nil;
@@ -195,6 +196,7 @@ static void call_class_loads(void)
     // Call all +loads for the detached list.
     for (i = 0; i < used; i++) {
         Class cls = classes[i].cls;
+        // load_method_t   load方法的结构体
         load_method_t load_method = (load_method_t)classes[i].method;
         if (!cls) continue; 
 
@@ -350,10 +352,12 @@ void call_load_methods(void)
     do {
         // 1. Repeatedly call class +loads until there aren't any more
         while (loadable_classes_used > 0) {
+            //  首先调用类的load 方法
             call_class_loads();
         }
 
         // 2. Call category +loads ONCE
+        // 调用分类的load 方法
         more_categories = call_category_loads();
 
         // 3. Run more +loads if there are classes OR more untried categories
