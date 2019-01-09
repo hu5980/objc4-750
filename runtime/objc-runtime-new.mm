@@ -4838,6 +4838,7 @@ static Method _class_getMethod(Class cls, SEL sel)
 * class_getInstanceMethod.  Return the instance method for the
 * specified class and selector.
 **********************************************************************/
+// 从cls 中找sel方法
 Method class_getInstanceMethod(Class cls, SEL sel)
 {
     if (!cls  ||  !sel) return nil;
@@ -4936,8 +4937,10 @@ IMP lookUpImpOrForward(Class cls, SEL sel, id inst,
         realizeClass(cls);
     }
 
+    // 需要初始化 并且还没有初始化
     if (initialize  &&  !cls->isInitialized()) {
         runtimeLock.unlock();
+        // 调用_class_initialize 去进行初始化
         _class_initialize (_class_getNonMetaClass(cls, inst));
         runtimeLock.lock();
         // If sel == initialize, _class_initialize will send +initialize and 
@@ -5032,6 +5035,7 @@ IMP lookUpImpOrForward(Class cls, SEL sel, id inst,
 * lookUpImpOrNil.
 * Like lookUpImpOrForward, but returns nil instead of _objc_msgForward_impcache
 **********************************************************************/
+// 查找IMP方法地址
 IMP lookUpImpOrNil(Class cls, SEL sel, id inst, 
                    bool initialize, bool cache, bool resolver)
 {

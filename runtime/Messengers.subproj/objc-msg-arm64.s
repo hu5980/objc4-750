@@ -276,11 +276,13 @@ LExit$0:
 	
 .endmacro
 
-
+// 汇编源码实现objc_msgSend
+// isa->类对象\元类对象  寻找方法、调用
+// superclass->类对象\元类对象  寻找方法、调用
 /********************************************************************
  *
  * id objc_msgSend(id self, SEL _cmd, ...);
- * IMP objc_msgLookup(id self, SEL _cmd, ...);
+ * IMP objc_msgLookup(id self, SEL _cmd, ...); // 查找方法
  * 
  * objc_msgLookup ABI:
  * IMP returned in x17

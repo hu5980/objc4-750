@@ -366,7 +366,7 @@ void waitForInitializeToComplete(Class cls)
     asm("");
 }
 
-
+// 直接调用Initialize
 void callInitialize(Class cls)
 {
     ((void(*)(Class, SEL))objc_msgSend)(cls, SEL_initialize);
@@ -481,6 +481,7 @@ void performForkChildInitialize(Class cls, Class supercls)
 * class_initialize.  Send the '+initialize' message on demand to any
 * uninitialized class. Force initialization of superclasses first.
 **********************************************************************/
+//_class_initialize 初始化
 void _class_initialize(Class cls)
 {
     assert(!cls->isMetaClass());
@@ -491,6 +492,7 @@ void _class_initialize(Class cls)
     // Make sure super is done initializing BEFORE beginning to initialize cls.
     // See note about deadlock above.
     supercls = cls->superclass;
+    // 如果存在父类 并且父类没有初始化 初始化父类
     if (supercls  &&  !supercls->isInitialized()) {
         _class_initialize(supercls);
     }
@@ -534,6 +536,7 @@ void _class_initialize(Class cls)
         @try
 #endif
         {
+            // 调用Initialize去初始化
             callInitialize(cls);
 
             if (PrintInitializing) {
