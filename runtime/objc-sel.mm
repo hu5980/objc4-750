@@ -133,7 +133,7 @@ static SEL search_builtins(const char *name)
     return nil;
 }
 
-
+//通过name 生成一个SEL 方法
 static SEL __sel_registerName(const char *name, bool shouldLock, bool copy) 
 {
     SEL result = 0;
@@ -142,11 +142,12 @@ static SEL __sel_registerName(const char *name, bool shouldLock, bool copy)
     else selLock.assertLocked();
 
     if (!name) return (SEL)0;
-
+    // 查找 name这样的 sel 是否存在 存在直接返回
     result = search_builtins(name);
     if (result) return result;
     
     conditional_mutex_locker_t lock(selLock, shouldLock);
+    // namedSelectors 名称的hash表是否存在
     if (namedSelectors) {
         result = (SEL)NXMapGet(namedSelectors, name);
     }
@@ -155,12 +156,15 @@ static SEL __sel_registerName(const char *name, bool shouldLock, bool copy)
     // No match. Insert.
 
     if (!namedSelectors) {
+        // 创建namedSelectors
         namedSelectors = NXCreateMapTable(NXStrValueMapPrototype, 
                                           (unsigned)SelrefCount);
     }
     if (!result) {
+        // 创建 通过 name  SEL
         result = sel_alloc(name, copy);
         // fixme choose a better container (hash not map for starters)
+        // 将 sel 插入 namedSelectors 表中
         NXMapInsert(namedSelectors, sel_getName(result), result);
     }
 
