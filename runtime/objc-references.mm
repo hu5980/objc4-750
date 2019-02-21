@@ -152,6 +152,10 @@ namespace objc_references_support {
     inline disguised_ptr_t DISGUISE(id value) { return ~uintptr_t(value); }
     inline id UNDISGUISE(disguised_ptr_t dptr) { return id(~dptr); }
   
+    
+    /*
+     ObjcAssociation 存储关联对象 的关联策略 跟 value
+     */
     class ObjcAssociation {
         uintptr_t _policy;
         id _value;
@@ -170,12 +174,14 @@ namespace objc_references_support {
     typedef hash_map<disguised_ptr_t, ObjectAssociationMap *> AssociationsHashMap;
 #else
     typedef ObjcAllocator<std::pair<void * const, ObjcAssociation> > ObjectAssociationMapAllocator;
+    // void * 是key , ObjcAssociation 是value
     class ObjectAssociationMap : public std::map<void *, ObjcAssociation, ObjectPointerLess, ObjectAssociationMapAllocator> {
     public:
         void *operator new(size_t n) { return ::malloc(n); }
         void operator delete(void *ptr) { ::free(ptr); }
     };
     typedef ObjcAllocator<std::pair<const disguised_ptr_t, ObjectAssociationMap*> > AssociationsHashMapAllocator;
+    // disguised_ptr_t 是key  ObjectAssociationMap * 是value
     class AssociationsHashMap : public unordered_map<disguised_ptr_t, ObjectAssociationMap *, DisguisedPointerHash, DisguisedPointerEqual, AssociationsHashMapAllocator> {
     public:
         void *operator new(size_t n) { return ::malloc(n); }
