@@ -67,8 +67,8 @@
  */
 
 # if __arm64__
-#   define ISA_MASK        0x0000000ffffffff8ULL
-#   define ISA_MAGIC_MASK  0x000003f000000001ULL
+#   define ISA_MASK        0x0000000ffffffff8ULL                // 用来取出shiftcls的地址
+#   define ISA_MAGIC_MASK  0x000003f000000001ULL                // 用来取出magic
 #   define ISA_MAGIC_VALUE 0x000001a000000001ULL
 #   define ISA_BITFIELD                                                      \
       uintptr_t nonpointer        : 1;                                       \
