@@ -382,6 +382,7 @@ IMP lookUpImpOrForward(Class cls, SEL sel, id inst,
     methodListLock.assertUnlocked();
 
     // Optimistic cache lookup
+    // cache 为YES 再缓存里面查找 NO 不在缓存里面查找
     if (cache) {
         methodPC = _cache_getImp(cls, sel);
         if (methodPC) return methodPC;    
@@ -408,14 +409,16 @@ IMP lookUpImpOrForward(Class cls, SEL sel, id inst,
     methodListLock.lock();
 
     // Try this class's cache.
-
+    // 这里还有一次缓存查找
     methodPC = _cache_getImp(cls, sel);
     if (methodPC) goto done;
 
     // Try this class's method lists.
-
+    // 尝试在这个类的方法列表中查找
     meth = _class_getMethodNoSuper_nolock(cls, sel);
+    // 找到了
     if (meth) {
+        // 将找到的方法添加进缓存
         log_and_fill_cache(cls, cls, meth, sel);
         methodPC = method_getImplementation(meth);
         goto done;
@@ -452,17 +455,16 @@ IMP lookUpImpOrForward(Class cls, SEL sel, id inst,
     }
 
     // No implementation found. Try method resolver once.
-
+    // triedResolver 标记为已经动态方法解析了
     if (resolver  &&  !triedResolver) {
         methodListLock.unlock();
         _class_resolveMethod(cls, sel, inst);
-        triedResolver = YES;
+        triedResolver = YES; // 在这里标记
         goto retry;
     }
 
     // No implementation found, and method resolver didn't help. 
     // Use forwarding.
-
     _cache_addForwardEntry(cls, sel);
     methodPC = _objc_msgForward_impcache;
 
@@ -1995,16 +1997,17 @@ Ivar *class_copyIvarList(Class cls, unsigned int *outCount)
     Ivar *result = nil;
     unsigned int count = 0;
     int i;
-
+    // 类对象不存在 直接返回nil
     if (!cls) {
         if (outCount) *outCount = 0;
         return nil;
     }
-
+    // 类对象 ivar_list_t *ivars 不为空
     if (cls->ivars) {
         count = cls->ivars->ivar_count;
     }
 
+    // 成员变量总数不为空
     if (count > 0) {
         result = (Ivar *)malloc((count+1) * sizeof(Ivar));
 
@@ -2341,15 +2344,18 @@ static id _object_copyFromZone(id oldObj, size_t extraBytes, void *zone)
 * Returns `obj`. Does nothing if `obj` is nil.
 * CoreFoundation and other clients do call this under GC.
 **********************************************************************/
+/// 销毁实例对象
 void *objc_destructInstance(id obj) 
 {
     if (obj) {
         Class isa = obj->getIsa();
 
+        /// 如果有C++ 析构函数 调用object_cxxDestruct
         if (isa->hasCxxDtor()) {
             object_cxxDestruct(obj);
         }
 
+        /// 如果有关联对象 调用_object_remove_assocations
         if (isa->instancesHaveAssociatedObjects()) {
             _object_remove_assocations(obj);
         }
