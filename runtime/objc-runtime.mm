@@ -571,7 +571,12 @@ void objc_setAssociatedObject(id object, const void *key, id value, objc_Associa
 }
 
 
-void objc_removeAssociatedObjects(id object) 
+/**
+ 移除所有的关联对象
+ 
+ @param object
+ */
+void objc_removeAssociatedObjects(id object)
 {
     if (object && object->hasAssociatedObjects()) {
         _object_remove_assocations(object);
