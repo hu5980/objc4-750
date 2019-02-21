@@ -911,7 +911,7 @@ static void methodizeClass(Class cls)
     for (const auto& meth : rw->methods) {
         if (PrintConnecting) {
             _objc_inform("METHOD %c[%s %s]", isMeta ? '+' : '-', 
-                         cls->nameForLogging(), sel_getName(meth.name));
+                         cls->nameForLogging(), sel_getName(meth.name)); 
         }
         assert(sel_registerName(sel_getName(meth.name)) == meth.name); 
     }
@@ -1174,11 +1174,14 @@ static void addNamedClass(Class cls, const char *name, Class replacing = nil)
 {
     runtimeLock.assertLocked();
     Class old;
+    // 之前存在这样的一个类 并且之前存在的不等于 新的
     if ((old = getClass(name))  &&  old != replacing) {
+        // 对重复的类进行处理
         inform_duplicate(name, old, cls);
 
         // getNonMetaClass uses name lookups. Classes not found by name 
         // lookup must be in the secondary meta->nonmeta table.
+        // 添加到辅助元类映射
         addNonMetaClass(cls);
     } else {
         NXMapInsert(gdb_objc_realized_classes, name, cls);
@@ -2156,7 +2159,9 @@ static void flushCaches(Class cls)
         });
     }
     else {
+        // 枚举所有的类与元类
         foreach_realized_class_and_metaclass(^(Class c){
+            // 清空缓存的具体代码
             cache_erase_nolock(c);
         });
     }
@@ -3068,7 +3073,8 @@ method_getTypeEncoding(Method m)
 * method_setImplementation
 * Sets this method's implementation to imp.
 * The previous implementation is returned.
-**********************************************************************/
+********************************************************************* */
+// 设置Method 的 IMP 实现
 static IMP 
 _method_setImplementation(Class cls, method_t *m, IMP imp)
 {
@@ -3083,7 +3089,7 @@ _method_setImplementation(Class cls, method_t *m, IMP imp)
     // Cache updates are slow if cls is nil (i.e. unknown)
     // RR/AWZ updates are slow if cls is nil (i.e. unknown)
     // fixme build list of classes whose Methods are known externally?
-
+    // 清空缓存
     flushCaches(cls);
 
     updateCustomRR_AWZ(cls, m);
@@ -3103,10 +3109,11 @@ method_setImplementation(Method m, IMP imp)
 
 void method_exchangeImplementations(Method m1, Method m2)
 {
+    // 判断两个方法是否存在
     if (!m1  ||  !m2) return;
 
     mutex_locker_t lock(runtimeLock);
-
+    // 交换Method 的IMP
     IMP m1_imp = m1->imp;
     m1->imp = m2->imp;
     m2->imp = m1_imp;
@@ -3115,7 +3122,7 @@ void method_exchangeImplementations(Method m1, Method m2)
     // RR/AWZ updates are slow because class is unknown
     // Cache updates are slow because class is unknown
     // fixme build list of classes whose Methods are known externally?
-
+    // 清空缓存
     flushCaches(nil);
 
     updateCustomRR_AWZ(nil, m1);
@@ -4213,9 +4220,11 @@ class_copyIvarList(Class cls, unsigned int *outCount)
 * Does not copy any superclass's properties.
 * Locking: read-locks runtimeLock
 **********************************************************************/
+// 拷贝属性列表（最后需要调用free释放）  这是通过cls 获取它的class_rw_t 结构体 通过结构体内部的properties 获取属性个数以及属性
 objc_property_t *
 class_copyPropertyList(Class cls, unsigned int *outCount)
 {
+    // 如果cls 不存在outCount = 0 返回nil
     if (!cls) {
         if (outCount) *outCount = 0;
         return nil;
@@ -4226,12 +4235,14 @@ class_copyPropertyList(Class cls, unsigned int *outCount)
     checkIsKnownClass(cls);
     assert(cls->isRealized());
     
+    // class_rw_t rw
     auto rw = cls->data();
 
     property_t **result = nil;
+    // 获取属性个数
     unsigned int count = rw->properties.count();
     if (count > 0) {
-        result = (property_t **)malloc((count + 1) * sizeof(property_t *));
+        result = (property_t **)malloc((count + 1) * sizeof(property_t *)); // 分配内存
 
         count = 0;
         for (auto& prop : rw->properties) {
@@ -4751,11 +4762,13 @@ static method_t *search_method_list(const method_list_t *mlist, SEL sel)
 {
     int methodListIsFixedUp = mlist->isFixedUp();
     int methodListHasExpectedSize = mlist->entsize() == sizeof(method_t);
-    
+    // 如果方法已经排好顺序了
     if (__builtin_expect(methodListIsFixedUp && methodListHasExpectedSize, 1)) {
+        // 二分查找
         return findMethodInSortedMethodList(sel, mlist);
     } else {
         // Linear search of unsorted method list
+        // 按顺序查找
         for (auto& meth : *mlist) {
             if (meth.name == sel) return &meth;
         }
@@ -4917,6 +4930,7 @@ IMP lookUpImpOrForward(Class cls, SEL sel, id inst,
 
     // Optimistic cache lookup
     if (cache) {
+        // 缓存查找
         imp = cache_getImp(cls, sel);
         if (imp) return imp;
     }
@@ -4959,15 +4973,18 @@ IMP lookUpImpOrForward(Class cls, SEL sel, id inst,
     if (imp) goto done;
 
     // Try this class's method lists.
+    // 尝试在当前的方法列表中查找
     {
         Method meth = getMethodNoSuper_nolock(cls, sel);
         if (meth) {
+            // 填充到当前类的方法缓存列表中
             log_and_fill_cache(cls, meth->imp, sel, inst, cls);
             imp = meth->imp;
             goto done;
         }
     }
 
+    // 尝试到父类的方法列表中查找
     // Try superclass caches and method lists.
     {
         unsigned attempts = unreasonableClassCount();
@@ -4981,10 +4998,12 @@ IMP lookUpImpOrForward(Class cls, SEL sel, id inst,
             }
             
             // Superclass cache.
+            // 父类的方法缓存中查找
             imp = cache_getImp(curClass, sel);
             if (imp) {
                 if (imp != (IMP)_objc_msgForward_impcache) {
                     // Found the method in a superclass. Cache it in this class.
+                    // 添加到当前类的方法缓存中
                     log_and_fill_cache(cls, imp, sel, inst, curClass);
                     goto done;
                 }
@@ -4997,8 +5016,10 @@ IMP lookUpImpOrForward(Class cls, SEL sel, id inst,
             }
             
             // Superclass method list.
+            // 父类的方法列表中查找
             Method meth = getMethodNoSuper_nolock(curClass, sel);
             if (meth) {
+                // 添加到当前类的方法缓存中
                 log_and_fill_cache(cls, meth->imp, sel, inst, curClass);
                 imp = meth->imp;
                 goto done;
@@ -5733,6 +5754,7 @@ BOOL class_conformsToProtocol(Class cls, Protocol *proto_gen)
 * fixme
 * Locking: runtimeLock must be held by the caller
 **********************************************************************/
+// 添加新的方法
 static IMP 
 addMethod(Class cls, SEL name, IMP imp, const char *types, bool replace)
 {
@@ -5747,14 +5769,14 @@ addMethod(Class cls, SEL name, IMP imp, const char *types, bool replace)
 
     method_t *m;
     if ((m = getMethodNoSuper_nolock(cls, name))) {
-        // already exists
-        if (!replace) {
+        // already exists  已经存在
+        if (!replace) { // 不要求替换
             result = m->imp;
-        } else {
+        } else { //要求y替换
             result = _method_setImplementation(cls, m, imp);
         }
     } else {
-        // fixme optimize
+        // fixme optimize  方法不存在 创建一个新方法 将它加载到 方法列表中
         method_list_t *newlist;
         newlist = (method_list_t *)calloc(sizeof(*newlist), 1);
         newlist->entsizeAndFlags = 
@@ -5765,7 +5787,9 @@ addMethod(Class cls, SEL name, IMP imp, const char *types, bool replace)
         newlist->first.imp = imp;
 
         prepareMethodLists(cls, &newlist, 1, NO, NO);
+        // class_rw_t
         cls->data()->methods.attachLists(&newlist, 1);
+        // 清楚缓存
         flushCaches(cls);
 
         result = nil;
@@ -5863,12 +5887,14 @@ class_addMethod(Class cls, SEL name, IMP imp, const char *types)
 }
 
 
+// replace 直接调用addMethod 只是把replace 设置为YES
 IMP 
 class_replaceMethod(Class cls, SEL name, IMP imp, const char *types)
 {
     if (!cls) return nil;
 
     mutex_locker_t lock(runtimeLock);
+    // 添加一个新的Method
     return addMethod(cls, name, imp, types ?: "", YES);
 }
 
@@ -6018,13 +6044,14 @@ _class_addProperty(Class cls, const char *name,
 {
     if (!cls) return NO;
     if (!name) return NO;
-
+    // 判断这样的属性是否存在
     property_t *prop = class_getProperty(cls, name);
-    if (prop  &&  !replace) {
+ 
+    if (prop  &&  !replace) {     // 存在 并且不替换  直接返回NO
         // already exists, refuse to replace
         return NO;
     } 
-    else if (prop) {
+    else if (prop) { // 存在并且要替换  则替换掉属性内容
         // replace existing
         mutex_locker_t lock(runtimeLock);
         try_free(prop->attributes);
@@ -6037,12 +6064,12 @@ _class_addProperty(Class cls, const char *name,
         assert(cls->isRealized());
         
         property_list_t *proplist = (property_list_t *)
-            malloc(sizeof(*proplist));
-        proplist->count = 1;
+            malloc(sizeof(*proplist)); // 创建一个property_list_t
+        proplist->count = 1;  // 设置它的个数
         proplist->entsizeAndFlags = sizeof(proplist->first);
         proplist->first.name = strdupIfMutable(name);
         proplist->first.attributes = copyPropertyAttributeString(attrs, count);
-        
+        // 将新创建的proplist 添加到class_rw_t 的property_array_t 上
         cls->data()->properties.attachLists(&proplist, 1);
         
         return YES;
@@ -6060,6 +6087,7 @@ void
 class_replaceProperty(Class cls, const char *name, 
                       const objc_property_attribute_t *attrs, unsigned int n)
 {
+    // 就是添加属性 只是replace 这个参数设置为YES
     _class_addProperty(cls, name, attrs, n, YES);
 }
 
@@ -6294,17 +6322,18 @@ Class objc_allocateClassPair(Class superclass, const char *name,
 
     mutex_locker_t lock(runtimeLock);
 
-    // Fail if the class name is in use.
+    // Fail if the class name is in use.  类存在
     // Fail if the superclass isn't kosher.
     if (getClass(name)  ||  !verifySuperclass(superclass, true/*rootOK*/)) {
         return nil;
     }
 
     // Allocate new classes.
-    cls  = alloc_class_for_subclass(superclass, extraBytes);
-    meta = alloc_class_for_subclass(superclass, extraBytes);
+    cls  = alloc_class_for_subclass(superclass, extraBytes); // 创建新类
+    meta = alloc_class_for_subclass(superclass, extraBytes); // 创建这个类的新元类
 
     // fixme mangle the name if it looks swift-y?
+    // 初始化类
     objc_initializeClassPair_internal(superclass, name, cls, meta);
 
     return cls;
@@ -6322,6 +6351,7 @@ void objc_registerClassPair(Class cls)
 
     checkIsKnownClass(cls);
 
+    // 类已经注册过 并且分配了内存
     if ((cls->data()->flags & RW_CONSTRUCTED)  ||
         (cls->ISA()->data()->flags & RW_CONSTRUCTED)) 
     {
@@ -6330,6 +6360,7 @@ void objc_registerClassPair(Class cls)
         return;
     }
 
+    // 类没有分配内存
     if (!(cls->data()->flags & RW_CONSTRUCTING)  ||  
         !(cls->ISA()->data()->flags & RW_CONSTRUCTING))
     {
@@ -6506,7 +6537,9 @@ void objc_disposeClassPair(Class cls)
     // - it's not there and we don't have the lock
     detach_class(cls->ISA(), YES);
     detach_class(cls, NO);
+    // 释放cls指向的ISA
     free_class(cls->ISA());
+    // 释放cls
     free_class(cls);
 }
 
