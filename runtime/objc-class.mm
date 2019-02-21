@@ -197,7 +197,7 @@ Class object_setClass(id obj, Class cls)
     if (!cls->isFuture()  &&  !cls->isInitialized()) {
         _class_initialize(_class_getNonMetaClass(cls, nil));
     }
-
+    
     return obj->changeIsa(cls);
 }
 
@@ -332,22 +332,26 @@ _class_getIvarMemoryManagement(Class cls, Ivar ivar)
 }
 
 
-static ALWAYS_INLINE 
+static ALWAYS_INLINE
+// 设置对象的成员变量  只有在类注册之前才会生效
 void _object_setIvar(id obj, Ivar ivar, id value, bool assumeStrong)
 {
+    // 对象不存在 ivar不存在 对象是isTaggedPointer
     if (!obj  ||  !ivar  ||  obj->isTaggedPointer()) return;
 
     ptrdiff_t offset;
     objc_ivar_memory_management_t memoryManagement;
+    // offset 新增的成员变量 相对于 对象isa 指针的偏移量
     _class_lookUpIvar(obj->ISA(), ivar, offset, memoryManagement);
 
     if (memoryManagement == objc_ivar_memoryUnknown) {
         if (assumeStrong) memoryManagement = objc_ivar_memoryStrong;
         else memoryManagement = objc_ivar_memoryUnretained;
     }
-
+    
+    // ivar 成员变量的地址
     id *location = (id *)((char *)obj + offset);
-
+    // memoryManagement  内存的类型
     switch (memoryManagement) {
     case objc_ivar_memoryWeak:       objc_storeWeak(location, value); break;
     case objc_ivar_memoryStrong:     objc_storeStrong(location, value); break;
@@ -776,14 +780,17 @@ IMP class_getMethodImplementation(Class cls, SEL sel)
 
     if (!cls  ||  !sel) return nil;
 
+    // 查找实现方法是否存在
     imp = lookUpImpOrNil(cls, sel, nil, 
                          YES/*initialize*/, YES/*cache*/, YES/*resolver*/);
 
     // Translate forwarding function to C-callable external version
+    // 不存在 进行动态方法解析
     if (!imp) {
         return _objc_msgForward;
     }
 
+    // 存在直接返回
     return imp;
 }
 
