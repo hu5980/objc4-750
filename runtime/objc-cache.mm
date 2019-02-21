@@ -557,7 +557,7 @@ void cache_t::expand()
     reallocate(oldCapacity, newCapacity);
 }
 
-
+// 填充方法缓存到缓存列表中
 static void cache_fill_nolock(Class cls, SEL sel, IMP imp, id receiver)
 {
     cacheUpdateLock.assertLocked();
@@ -567,6 +567,7 @@ static void cache_fill_nolock(Class cls, SEL sel, IMP imp, id receiver)
 
     // Make sure the entry wasn't added to the cache by some other thread 
     // before we grabbed the cacheUpdateLock.
+    // 如果缓存中已经存在此方法 直接返回
     if (cache_getImp(cls, sel)) return;
 
     cache_t *cache = getCache(cls);
