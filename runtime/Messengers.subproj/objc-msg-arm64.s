@@ -192,7 +192,7 @@ LExit$0:
 // CacheHit: x17 = cached IMP, x12 = address of cached IMP
 .macro CacheHit
 .if $0 == NORMAL
-	TailCallCachedImp x17, x12	// authenticate and call imp
+	TailCallCachedImp x17, x12	// authenticate and call imp  验证并调用imp
 .elseif $0 == GETIMP
 	mov	p0, p17
 	AuthAndResignAsIMP x0, x12	// authenticate imp and re-sign as IMP
@@ -205,6 +205,7 @@ LExit$0:
 .endif
 .endmacro
 
+// 缓存没有命中
 .macro CheckMiss
 	// miss if bucket->sel == 0
 .if $0 == GETIMP
@@ -230,6 +231,7 @@ LExit$0:
 .endif
 .endmacro
 
+//缓存查找
 .macro CacheLookup
 	// p1 = SEL, p16 = isa
 	ldp	p10, p11, [x16, #CACHE]	// p10 = buckets, p11 = occupied|mask
@@ -243,9 +245,9 @@ LExit$0:
 	ldp	p17, p9, [x12]		// {imp, sel} = *bucket
 1:	cmp	p9, p1			// if (bucket->sel != _cmd)
 	b.ne	2f			//     scan more
-	CacheHit $0			// call or return imp
+	CacheHit $0			// call or return imp  缓存命中
 	
-2:	// not hit: p12 = not-hit bucket
+2:	// not hit: p12 = not-hit bucket  没有n命中
 	CheckMiss $0			// miss if bucket->sel == 0
 	cmp	p12, p10		// wrap if bucket == buckets
 	b.eq	3f
@@ -303,7 +305,8 @@ _objc_debug_taggedpointer_ext_classes:
 
 	ENTRY _objc_msgSend
 	UNWIND _objc_msgSend, NoFrame
-
+// p0 寄存器：消息接受者 receiver
+// 判断消息接受者是否小于等于0 ，一旦小于等于0 跳转到LNilOrTagged （或者LReturnZero）
 	cmp	p0, #0			// nil check and tagged pointer check
 #if SUPPORT_TAGGED_POINTERS
 	b.le	LNilOrTagged		//  (MSB tagged pointer looks negative)
@@ -345,7 +348,7 @@ LReturnZero:
 	movi	d1, #0
 	movi	d2, #0
 	movi	d3, #0
-	ret
+	ret    // return objc_msgSend 调用结束
 
 	END_ENTRY _objc_msgSend
 
@@ -526,15 +529,15 @@ LGetImpMiss:
 *   method caches.
 *
 ********************************************************************/
-
+    // 消息转发的 汇编代码
 	STATIC_ENTRY __objc_msgForward_impcache
 
-	// No stret specialization.
+	// No stret specialization. // 调用__objc_msgForward
 	b	__objc_msgForward
 
 	END_ENTRY __objc_msgForward_impcache
 
-	
+	// 调用__objc_msgForward
 	ENTRY __objc_msgForward
 
 	adrp	x17, __objc_forward_handler@PAGE
