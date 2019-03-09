@@ -305,6 +305,7 @@ static void weak_entry_remove(weak_table_t *weak_table, weak_entry_t *entry)
  * 
  * @return The table of weak referrers to this object. 
  */
+// 获取当前对象 的weak_table 节点 在弱引用表中的位置
 static weak_entry_t *
 weak_entry_for_referent(weak_table_t *weak_table, objc_object *referent)
 {
@@ -458,36 +459,40 @@ weak_is_registered_no_lock(weak_table_t *weak_table, id referent_id)
  * @param weak_table 
  * @param referent The object being deallocated. 
  */
+// 清除弱引用指针
 void 
 weak_clear_no_lock(weak_table_t *weak_table, id referent_id) 
 {
+    //1、拿到被销毁对象的指针
     objc_object *referent = (objc_object *)referent_id;
-
+    // 通过weak_table 以及referent 获取它对应的entry
     weak_entry_t *entry = weak_entry_for_referent(weak_table, referent);
     if (entry == nil) {
         /// XXX shouldn't happen, but does with mismatched CF/objc
         //printf("XXX no entry for clear deallocating %p\n", referent);
         return;
     }
-
+    //3、将所有的引用设置成nil
     // zero out references
     weak_referrer_t *referrers;
     size_t count;
     
     if (entry->out_of_line()) {
+        //3.1、如果弱引用超过2个则将referrers数组内的弱引用都置成nil。
         referrers = entry->referrers;
         count = TABLE_SIZE(entry);
     } 
     else {
+         //3.2、不超过2个则将inline_referrers数组内的弱引用都置成nil
         referrers = entry->inline_referrers;
         count = WEAK_INLINE_COUNT;
     }
-    
+    //循环设置所有的引用为nil
     for (size_t i = 0; i < count; ++i) {
         objc_object **referrer = referrers[i];
         if (referrer) {
             if (*referrer == referent) {
-                *referrer = nil;
+                *referrer = nil; // 将weak 修饰的对象设置为nil
             }
             else if (*referrer) {
                 _objc_inform("__weak variable at %p holds %p instead of %p. "
@@ -499,7 +504,7 @@ weak_clear_no_lock(weak_table_t *weak_table, id referent_id)
             }
         }
     }
-    
+    //4、从weak_table中移除entry
     weak_entry_remove(weak_table, entry);
 }
 

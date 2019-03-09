@@ -1228,10 +1228,12 @@ NEVER_INLINE void
 objc_object::clearDeallocating_slow()
 {
     assert(isa.nonpointer  &&  (isa.weakly_referenced || isa.has_sidetable_rc));
-
+    // 拿到sidetable
     SideTable& table = SideTables()[this];
     table.lock();
+    // 如果weakly_referenced = 1
     if (isa.weakly_referenced) {
+        // 在弱引用表里面进行一个清除操作
         weak_clear_no_lock(&table.weak_table, (id)this);
     }
     if (isa.has_sidetable_rc) {
@@ -1567,6 +1569,7 @@ objc_object::sidetable_release(bool performDealloc)
 void 
 objc_object::sidetable_clearDeallocating()
 {
+    //取出sidetable
     SideTable& table = SideTables()[this];
 
     // clear any weak table items

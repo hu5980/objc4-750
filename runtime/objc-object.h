@@ -399,24 +399,27 @@ objc_object::rootIsDeallocating()
 inline void 
 objc_object::clearDeallocating()
 {
+   
     if (slowpath(!isa.nonpointer)) {
         // Slow path for raw pointer isa.
-        sidetable_clearDeallocating();
+        sidetable_clearDeallocating(); //如果是没有优化过的
     }
     else if (slowpath(isa.weakly_referenced  ||  isa.has_sidetable_rc)) {
         // Slow path for non-pointer isa with weak refs and/or side table data.
-        clearDeallocating_slow();
+        clearDeallocating_slow(); //如果是优化过的
     }
 
     assert(!sidetable_present());
 }
 
-
+// 对象的dealloc
 inline void
 objc_object::rootDealloc()
 {
+    
     if (isTaggedPointer()) return;  // fixme necessary?
-
+    // 如果对象是优化过的 & 没有弱引用指针 & 没有关联对象 & 没有 C++ 或者 Objc 的析构器 & 没有引用计数表
+    
     if (fastpath(isa.nonpointer  &&  
                  !isa.weakly_referenced  &&  
                  !isa.has_assoc  &&  
@@ -424,9 +427,11 @@ objc_object::rootDealloc()
                  !isa.has_sidetable_rc))
     {
         assert(!sidetable_present());
+        // 直接释放
         free(this);
     } 
     else {
+        // 调用object_dispose
         object_dispose((id)this);
     }
 }
