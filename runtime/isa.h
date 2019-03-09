@@ -55,7 +55,7 @@
     // uintptr_t extraBytes : 1;  // allocated with extra bytes
 
 /*
- uintptr_t nonpointer        : 1;  是否是Tagged Pointer
+ uintptr_t nonpointer        : 1;  是否是优化过的对象 （ISA 对象在object-c 2 开始后会进行优化）
  uintptr_t has_assoc         : 1;  是否有关联引用
  uintptr_t has_cxx_dtor      : 1;  是否有析构函数
  uintptr_t shiftcls          : 33; 类的指针
