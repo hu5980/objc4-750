@@ -116,6 +116,12 @@ void vsyslog(int, const char *, va_list) UNAVAILABLE_ATTRIBUTE;
 #define ALWAYS_INLINE inline __attribute__((always_inline))
 #define NEVER_INLINE inline __attribute__((noinline))
 
+
+/*
+ __builtin_expect 这个指令是gcc引入的，作用是允许程序员将最有可能执行的分支告诉编译器。这个指令的写法为：__builtin_expect(EXP, N)。
+ 意思是：EXP==N的概率很大。
+ */
+
 #define fastpath(x) (__builtin_expect(bool(x), 1))
 #define slowpath(x) (__builtin_expect(bool(x), 0))
 
@@ -226,6 +232,7 @@ LoadExclusive(uintptr_t *src)
 {
     return *src;
 }
+
 
 static ALWAYS_INLINE
 bool 

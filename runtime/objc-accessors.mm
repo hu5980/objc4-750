@@ -85,11 +85,13 @@ static inline void reallySetProperty(id self, SEL _cmd, id newValue, ptrdiff_t o
         if (*slot == newValue) return;
         newValue = objc_retain(newValue);
     }
-
+    // atomic 关键字的作用 就是会对set get方法进行加锁
+    // 如果不是atomic 直接赋值
     if (!atomic) {
         oldValue = *slot;
         *slot = newValue;
     } else {
+        // 获取一个自旋锁
         spinlock_t& slotlock = PropertyLocks[slot];
         slotlock.lock();
         oldValue = *slot;

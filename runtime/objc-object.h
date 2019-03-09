@@ -433,6 +433,7 @@ objc_object::rootDealloc()
 
 
 // Equivalent to calling [this retain], with shortcuts if there is no override
+// 引用计数器 + 1
 inline id 
 objc_object::retain()
 {
@@ -467,21 +468,31 @@ objc_object::rootTryRetain()
     return rootRetain(true, false) ? true : false;
 }
 
+// 具体的对对象进行retain 操作
 ALWAYS_INLINE id 
 objc_object::rootRetain(bool tryRetain, bool handleOverflow)
 {
+    // 如果是TaggedPointer 类型则直接返回
     if (isTaggedPointer()) return (id)this;
-
+    // sideTable 是否加锁变量
     bool sideTableLocked = false;
+    // 写入SideTable 加锁变量
     bool transcribeToSideTable = false;
 
     isa_t oldisa;
     isa_t newisa;
 
+    /*
+     1. 判断isa.nonpointer
+     
+     2.
+     */
     do {
         transcribeToSideTable = false;
+        //LoadExclusive(&isa.bits) 对象的地址
         oldisa = LoadExclusive(&isa.bits);
         newisa = oldisa;
+        // 不是优化后的isa  指针 直接存到sidetable 里面去
         if (slowpath(!newisa.nonpointer)) {
             ClearExclusive(&isa.bits);
             if (!tryRetain && sideTableLocked) sidetable_unlock();
@@ -495,12 +506,14 @@ objc_object::rootRetain(bool tryRetain, bool handleOverflow)
             return nil;
         }
         uintptr_t carry;
-        newisa.bits = addc(newisa.bits, RC_ONE, 0, &carry);  // extra_rc++
-
+        newisa.bits = addc(newisa.bits, RC_ONE, 0, &carry);  // extra_rc++  引用计数器 + 1
+        
+       // 如果carry 不等于0 相当于isa 指针里面不能存储引用计数器了 此时要将引用计数器存放到引用计数器表里面
         if (slowpath(carry)) {
             // newisa.extra_rc++ overflowed
             if (!handleOverflow) {
                 ClearExclusive(&isa.bits);
+                // 调用rootRetain_overflow 将引用计数器存到 sidetable 中
                 return rootRetain_overflow(tryRetain);
             }
             // Leave half of the retain counts inline and 
@@ -511,6 +524,7 @@ objc_object::rootRetain(bool tryRetain, bool handleOverflow)
             newisa.extra_rc = RC_HALF;
             newisa.has_sidetable_rc = true;
         }
+        // 如果&isa.bits和oldisa.bits相等，那么就把newisa.bits的值赋给&isa.bits，并且返回true
     } while (slowpath(!StoreExclusive(&isa.bits, oldisa.bits, newisa.bits)));
 
     if (slowpath(transcribeToSideTable)) {
@@ -524,6 +538,7 @@ objc_object::rootRetain(bool tryRetain, bool handleOverflow)
 
 
 // Equivalent to calling [this release], with shortcuts if there is no override
+// 引用计数 -1
 inline void
 objc_object::release()
 {
@@ -560,6 +575,15 @@ objc_object::rootReleaseShouldDealloc()
     return rootRelease(false, false);
 }
 
+    /*
+     1.最普通的情况，直接将extra_rc减1
+     2.如果extra_rc为0，判断has_sidetable_rc
+     3.has_sidetable_rc = false，说明对象已经没有引用计数了，直接dealloc释放内存
+     4.has_sidetable_rc = true，说明extra_rc有过溢出
+     5.从SideTable中借位成功，每次取RC_HALF，也就是128，减1之后赋给extra_rc，回到步骤1
+     6.从SideTable中借位失败，直接dealloc
+    
+     */
 ALWAYS_INLINE bool 
 objc_object::rootRelease(bool performDealloc, bool handleUnderflow)
 {
@@ -574,6 +598,7 @@ objc_object::rootRelease(bool performDealloc, bool handleUnderflow)
     do {
         oldisa = LoadExclusive(&isa.bits);
         newisa = oldisa;
+        // 未优化过的 isa 指针 直接在引用计数器表里面 - 1
         if (slowpath(!newisa.nonpointer)) {
             ClearExclusive(&isa.bits);
             if (sideTableLocked) sidetable_unlock();
@@ -581,7 +606,9 @@ objc_object::rootRelease(bool performDealloc, bool handleUnderflow)
         }
         // don't check newisa.fast_rr; we already called any RR overrides
         uintptr_t carry;
+        // 修改isa 地址里面存储的引用计数
         newisa.bits = subc(newisa.bits, RC_ONE, 0, &carry);  // extra_rc--
+        // carry 不等于0
         if (slowpath(carry)) {
             // don't ClearExclusive()
             goto underflow;
@@ -597,10 +624,12 @@ objc_object::rootRelease(bool performDealloc, bool handleUnderflow)
 
     // abandon newisa to undo the decrement
     newisa = oldisa;
-
+    // 如果has_sidetable_rc 不为 0 ，引用计数表里面 -1
     if (slowpath(newisa.has_sidetable_rc)) {
+        // 如果引用计数存在 sidetable 里面会跳过这一步
         if (!handleUnderflow) {
             ClearExclusive(&isa.bits);
+            // 在sidetable 里面修改引用计数器
             return rootRelease_underflow(performDealloc);
         }
 
@@ -615,7 +644,8 @@ objc_object::rootRelease(bool performDealloc, bool handleUnderflow)
             goto retry;
         }
 
-        // Try to remove some retain counts from the side table.        
+        // Try to remove some retain counts from the side table.
+        // 尝试从引用计数的side table 里面-1
         size_t borrowed = sidetable_subExtraRC_nolock(RC_HALF);
 
         // To avoid races, has_sidetable_rc must remain set 
@@ -665,7 +695,7 @@ objc_object::rootRelease(bool performDealloc, bool handleUnderflow)
     }
 
     // Really deallocate.
-
+    // 如果引用计数为0了 那么开始进行dealloc
     if (slowpath(newisa.deallocating)) {
         ClearExclusive(&isa.bits);
         if (sideTableLocked) sidetable_unlock();

@@ -414,6 +414,8 @@ _objc_makeTaggedPointer(objc_tag_index_t tag, uintptr_t value)
 static inline bool 
 _objc_isTaggedPointer(const void * _Nullable ptr)
 {
+    //拿着对象的地址 & _OBJC_TAG_MASK一个掩码
+    //ios 下 _OBJC_TAG_MASK = 1UL<<63)          (TARGET_OS_OSX || TARGET_OS_IOSMAC) && __x86_64__ 下为   1UL
     return ((uintptr_t)ptr & _OBJC_TAG_MASK) == _OBJC_TAG_MASK;
 }
 

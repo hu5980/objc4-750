@@ -89,10 +89,11 @@ typedef objc::DenseMap<DisguisedPtr<objc_object>,size_t,true> RefcountMap;
 enum HaveOld { DontHaveOld = false, DoHaveOld = true };
 enum HaveNew { DontHaveNew = false, DoHaveNew = true };
 
+//SideTable 结构体
 struct SideTable {
-    spinlock_t slock;
-    RefcountMap refcnts;
-    weak_table_t weak_table;
+    spinlock_t slock; // 自旋锁
+    RefcountMap refcnts; // 存储引用计数的一个Map
+    weak_table_t weak_table; // 弱引用表
 
     SideTable() {
         memset(&weak_table, 0, sizeof(weak_table));
@@ -1405,20 +1406,24 @@ objc_object::sidetable_getExtraRC_nolock()
 // SUPPORT_NONPOINTER_ISA
 #endif
 
-
+// 把引用计数器存储到sidetable 里面去
 id
 objc_object::sidetable_retain()
 {
 #if SUPPORT_NONPOINTER_ISA
     assert(!isa.nonpointer);
 #endif
+    // 通过this 指针拿到SideTable
     SideTable& table = SideTables()[this];
-    
+    // 给table 加锁
     table.lock();
+    //通过table 里面的refcountMap 这个哈希表 拿到引用计数
     size_t& refcntStorage = table.refcnts[this];
     if (! (refcntStorage & SIDE_TABLE_RC_PINNED)) {
+        // 引用计数 + SIDE_TABLE_RC_ONE
         refcntStorage += SIDE_TABLE_RC_ONE;
     }
+    // 给table 解锁
     table.unlock();
 
     return (id)this;
@@ -1585,17 +1590,19 @@ objc_object::sidetable_clearDeallocating()
 
 
 #if __OBJC2__
-
+//MARK:retain 源码
 __attribute__((aligned(16)))
 id 
 objc_retain(id obj)
 {
     if (!obj) return obj;
+    // 首先判断是否是taggedPointer这种类型 如果是直接返回原对象 因为isTaggedPointer 这种类型 数据直接存储在变量中 不需要引用计数器进行内存管理
     if (obj->isTaggedPointer()) return obj;
     return obj->retain();
 }
 
 
+//MARK:release 源码
 __attribute__((aligned(16)))
 void 
 objc_release(id obj)
