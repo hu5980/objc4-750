@@ -653,6 +653,8 @@ class AutoreleasePoolPage
 #endif
     static size_t const COUNT = SIZE / sizeof(id);
 
+    
+    // AutoreleasePoolPage 主要的成员变量
     magic_t const magic;
     id *next;
     pthread_t const thread;
@@ -660,6 +662,8 @@ class AutoreleasePoolPage
     AutoreleasePoolPage *child;
     uint32_t const depth;
     uint32_t hiwat;
+    
+    
 
     // SIZE-sizeof(*this) bytes of contents follow
 
@@ -745,11 +749,12 @@ class AutoreleasePoolPage
 #endif
     }
 
-
+    // autoreleasepoolpage 存储autorelease对象的开始位置
     id * begin() {
         return (id *) ((uint8_t *)this+sizeof(*this));
     }
 
+    // autoreleasepoolpage 结束地址
     id * end() {
         return (id *) ((uint8_t *)this+SIZE);
     }
@@ -1581,6 +1586,7 @@ objc_object::sidetable_clearDeallocating()
         if (it->second & SIDE_TABLE_WEAKLY_REFERENCED) {
             weak_clear_no_lock(&table.weak_table, (id)this);
         }
+        // 在引用计数表里面进行擦除操作
         table.refcnts.erase(it);
     }
     table.unlock();
@@ -1743,11 +1749,17 @@ callAlloc(Class cls, bool checkNil, bool allocWithZone=false)
 {
     if (slowpath(checkNil && !cls)) return nil;
 
+    /*
+     如果不是__OBJC2__版本 则直接调用allocWithZone
+     */
+    
 #if __OBJC2__
+    //判断我们或者superclass没有在 重写 alloc / allocWithZone方法，如果我们已经重写，则系统调用我们的方法
     if (fastpath(!cls->ISA()->hasCustomAWZ())) {
         // No alloc/allocWithZone implementation. Go straight to the allocator.
         // fixme store hasCustomAWZ in the non-meta class and 
         // add it to canAllocFast's summary
+        // canAllocFast 是有编译条件的
         if (fastpath(cls->canAllocFast())) {
             // No ctors, raw isa, etc. Go straight to the metal.
             bool dtor = cls->hasCxxDtor();

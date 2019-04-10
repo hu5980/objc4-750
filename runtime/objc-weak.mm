@@ -465,7 +465,16 @@ weak_clear_no_lock(weak_table_t *weak_table, id referent_id)
 {
     //1、拿到被销毁对象的指针
     objc_object *referent = (objc_object *)referent_id;
-    // 通过weak_table 以及referent 获取它对应的entry
+    // 通过weak_table 以及referent 获取它对应的弱引用对象
+    // 是一个结构体 里面保存了referent  referrers inline_referrers
+    /* weak_table
+     1,referent:
+     被指对象的地址。前面循环遍历查找的时候就是判断目标地址是否和他相等。
+     2,referrers
+     可变数组,里面保存着所有指向这个对象的弱引用的地址。当这个对象被释放的时候，referrers里的所有指针都会被设置成nil。
+     3,inline_referrers
+     只有4个元素的数组，默认情况下用它来存储弱引用的指针。当大于4个的时候使用referrers来存储指针。
+     */
     weak_entry_t *entry = weak_entry_for_referent(weak_table, referent);
     if (entry == nil) {
         /// XXX shouldn't happen, but does with mismatched CF/objc

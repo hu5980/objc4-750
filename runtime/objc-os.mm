@@ -885,7 +885,8 @@ void _objc_init(void)
     static_init();
     lock_init();  
     exception_init();
-
+    // map_images 主要是在image加载进内容后对其二进制内容进行解析，初始化里面的类的结构等。
+    // load_images 主要是调用call_load_methods。按照继承层次依次调用Class的+load方法然后再是Category的+load方法。
     _dyld_objc_notify_register(&map_images, load_images, unmap_image);
 }
 

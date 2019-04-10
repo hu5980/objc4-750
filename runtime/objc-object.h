@@ -406,7 +406,7 @@ objc_object::clearDeallocating()
     }
     else if (slowpath(isa.weakly_referenced  ||  isa.has_sidetable_rc)) {
         // Slow path for non-pointer isa with weak refs and/or side table data.
-        clearDeallocating_slow(); //如果是优化过的
+        clearDeallocating_slow();
     }
 
     assert(!sidetable_present());
@@ -549,6 +549,7 @@ objc_object::release()
 {
     assert(!isTaggedPointer());
 
+    // 快速找一下当前这个类是否有retain /release 这样的方法
     if (fastpath(!ISA()->hasCustomRR())) {
         rootRelease();
         return;

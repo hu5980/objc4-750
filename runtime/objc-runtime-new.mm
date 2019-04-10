@@ -937,10 +937,16 @@ static void remethodizeClass(Class cls)
     isMeta = cls->isMetaClass();
 
     // Re-methodizing: check for more categories
+    // 没有被附加到类上分类
     if ((cats = unattachedCategoriesForClass(cls, false/*not realizing*/))) {
         if (PrintConnecting) {
             _objc_inform("CLASS: attaching categories to class '%s' %s", 
                          cls->nameForLogging(), isMeta ? "(meta)" : "");
+        }
+        // 附加分类到类上
+      //  printf("class Name = %s\n",class_getName(cls));
+        if (strcmp(class_getName(cls), "JKPerson") == 0) {
+            printf("JKPerson");
         }
         
         attachCategories(cls, cats, true /*flush caches*/);        
@@ -1891,6 +1897,13 @@ static void reconcileInstanceVariables(Class cls, Class supercls, const class_ro
 // 初始化类
 static Class realizeClass(Class cls)
 {
+    
+    printf("class Name = %s\n",class_getName(cls));
+    
+    if(strcmp(class_getName(cls), "JKPerson") == 0){
+        printf("xiangdeng");
+    }
+    
     runtimeLock.assertLocked();
 
     const class_ro_t *ro;
@@ -1943,6 +1956,7 @@ static Class realizeClass(Class cls)
     // Realize superclass and metaclass, if they aren't already.
     // This needs to be done after RW_REALIZED is set above, for root classes.
     // This needs to be done after class index is chosen, for root metaclasses.
+     // 初始化父类和元类
     supercls = realizeClass(remapClass(cls->superclass));
     metacls = realizeClass(remapClass(cls->ISA()));
 
@@ -1982,6 +1996,7 @@ static Class realizeClass(Class cls)
 #endif
 
     // Update superclass and metaclass in case of remapping
+    // 更新cls与父类和元类的映射关系
     cls->superclass = supercls;
     cls->initClassIsa(metacls);
 
@@ -2226,7 +2241,7 @@ load_images(const char *path __unused, const struct mach_header *mh)
     // Discover load methods
     {
         mutex_locker_t lock2(runtimeLock);
-        //准备进行load 方法的加载
+        //准备进行load 方法的加载 这里会将class 以及子类添加到loadable_categories 数组中
         prepare_load_methods((const headerType *)mh);
     }
 
@@ -2491,6 +2506,16 @@ readProtocol(protocol_t *newproto, Class protocol_class,
 * Locking: runtimeLock acquired by map_images
 **********************************************************************/
 //totalClasses 所有的类
+//_objc_init(void) -> map_images -> map_images_nolock -> _read_images -> realizeClass
+
+/**
+ 添加镜像
+
+ @param hList 镜像数组
+ @param hCount 镜像个数
+ @param totalClasses 类的个数
+ @param unoptimizedTotalClasses 未优化的类的个数
+ */
 void _read_images(header_info **hList, uint32_t hCount, int totalClasses, int unoptimizedTotalClasses)
 {
     header_info *hi;
@@ -2747,7 +2772,7 @@ void _read_images(header_info **hList, uint32_t hCount, int totalClasses, int un
     ts.log("IMAGE TIMES: realize future classes");
 
     // Discover categories.
-    // 搜索分类
+    // 搜索分类 将所有镜像
     for (EACH_HEADER) {
         category_t **catlist = 
             _getObjc2CategoryList(hi, &count);
@@ -2756,7 +2781,13 @@ void _read_images(header_info **hList, uint32_t hCount, int totalClasses, int un
         for (i = 0; i < count; i++) {
             category_t *cat = catlist[i];
             Class cls = remapClass(cat->cls);
-
+            
+           
+            
+            if (strcmp(class_getName(cls), "JKPerson") == 0) {
+                printf("");
+            }
+        
             if (!cls) {
                 // Category's target class is missing (probably weak-linked).
                 // Disavow any knowledge of this category.
@@ -2774,6 +2805,7 @@ void _read_images(header_info **hList, uint32_t hCount, int totalClasses, int un
             // Then, rebuild the class's method lists (etc) if 
             // the class is realized. 
             bool classExists = NO;
+            // 如果Category中有实例方法，协议，实例属性，会改写target class的结构
             if (cat->instanceMethods ||  cat->protocols  
                 ||  cat->instanceProperties) 
             {
@@ -2900,6 +2932,7 @@ static void schedule_class_load(Class cls)
     // 这里有一个递归调用 ，如果有父类 会先将父类加进去
     schedule_class_load(cls->superclass);
     // 将cls添加到loadable_classes数组的后面
+    printf("load_category_class = %s\n",class_getName(cls));
     add_class_to_loadable_list(cls);
     cls->setInfo(RW_LOADED); 
 }
@@ -2935,6 +2968,7 @@ void prepare_load_methods(const headerType *mhdr)
         if (!cls) continue;  // category for ignored weak-linked class
         realizeClass(cls);
         assert(cls->ISA()->isRealized());
+       
         add_category_to_loadable_list(cat);
     }
 }
@@ -6586,7 +6620,13 @@ objc_constructInstance(Class cls, void *bytes)
 * Locking: none
 **********************************************************************/
 
-static __attribute__((always_inline)) 
+/**
+ 创建实例对象
+
+ @param always_inline <#always_inline description#>
+ @return <#return value description#>
+ */
+static __attribute__((always_inline))
 id
 _class_createInstanceFromZone(Class cls, size_t extraBytes, void *zone, 
                               bool cxxConstruct = true, 
@@ -6600,7 +6640,7 @@ _class_createInstanceFromZone(Class cls, size_t extraBytes, void *zone,
     bool hasCxxCtor = cls->hasCxxCtor();
     bool hasCxxDtor = cls->hasCxxDtor();
     bool fast = cls->canAllocNonpointer();
-
+    // 获取实例对象的大小
     size_t size = cls->instanceSize(extraBytes);
     if (outAllocatedSize) *outAllocatedSize = size;
 

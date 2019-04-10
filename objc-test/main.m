@@ -8,6 +8,9 @@
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 #import <objc/message.h>
+#import "JKPerson.h"
+#import "JKPerson+Category1.h"
+#import "JKPerson+Category2.h"
 #import <malloc/malloc.h>
 #import <pthread.h>
 
@@ -63,7 +66,16 @@ int main(int argc, const char * argv[]) {
 //        NSLog(@"%p", object_getClass(person)); // 类对象
         
         NSObject *obj = [[NSObject alloc] init];
+        
+        Class cls = [obj class];
+//        ro->instanceSize;
+        
+        JKPerson *person = [JKPerson new];
+        
+        [person addMethod];
+        
        
+        [NSObject new];
         for (int i = 0 ; i < 255; i++) {
            
              [obj retain];

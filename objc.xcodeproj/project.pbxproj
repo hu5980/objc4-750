@@ -119,6 +119,11 @@
 		83F4B52915E843B100E0926F /* NSObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F4B52715E843B100E0926F /* NSObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		83F550E0155E030800E95D3B /* objc-cache-old.mm in Sources */ = {isa = PBXBuildFile; fileRef = 83F550DF155E030800E95D3B /* objc-cache-old.mm */; };
 		87BB4EA70EC39854005D08E1 /* objc-probes.d in Sources */ = {isa = PBXBuildFile; fileRef = 87BB4E900EC39633005D08E1 /* objc-probes.d */; };
+		8DFCB0A8225B273F00981B17 /* JKPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DFCB0A7225B273F00981B17 /* JKPerson.m */; };
+		8DFCB0AB225B275A00981B17 /* JKPerson+Category1.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DFCB0AA225B275A00981B17 /* JKPerson+Category1.m */; };
+		8DFCB0AE225B276600981B17 /* JKPerson+Category2.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DFCB0AD225B276600981B17 /* JKPerson+Category2.m */; };
+		8DFCB0B1225B2AEF00981B17 /* JKDog.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DFCB0B0225B2AEF00981B17 /* JKDog.m */; };
+		8DFCB0B4225B2B0F00981B17 /* JKDog+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DFCB0B3225B2B0F00981B17 /* JKDog+Category.m */; };
 		9672F7EE14D5F488007CEC96 /* NSObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9672F7ED14D5F488007CEC96 /* NSObject.mm */; };
 		E8923DA5116AB2820071B552 /* objc-block-trampolines.mm in Sources */ = {isa = PBXBuildFile; fileRef = E8923DA0116AB2820071B552 /* objc-block-trampolines.mm */; };
 		F9BCC71B205C68E800DD9AFC /* objc-blocktramps-arm64.s in Sources */ = {isa = PBXBuildFile; fileRef = 8379996D13CBAF6F007C2B5F /* objc-blocktramps-arm64.s */; };
@@ -264,6 +269,16 @@
 		83F4B52715E843B100E0926F /* NSObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSObject.h; path = runtime/NSObject.h; sourceTree = "<group>"; };
 		83F550DF155E030800E95D3B /* objc-cache-old.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "objc-cache-old.mm"; path = "runtime/objc-cache-old.mm"; sourceTree = "<group>"; };
 		87BB4E900EC39633005D08E1 /* objc-probes.d */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.dtrace; name = "objc-probes.d"; path = "runtime/objc-probes.d"; sourceTree = "<group>"; };
+		8DFCB0A6225B273F00981B17 /* JKPerson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JKPerson.h; sourceTree = "<group>"; };
+		8DFCB0A7225B273F00981B17 /* JKPerson.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JKPerson.m; sourceTree = "<group>"; };
+		8DFCB0A9225B275A00981B17 /* JKPerson+Category1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JKPerson+Category1.h"; sourceTree = "<group>"; };
+		8DFCB0AA225B275A00981B17 /* JKPerson+Category1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "JKPerson+Category1.m"; sourceTree = "<group>"; };
+		8DFCB0AC225B276600981B17 /* JKPerson+Category2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JKPerson+Category2.h"; sourceTree = "<group>"; };
+		8DFCB0AD225B276600981B17 /* JKPerson+Category2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "JKPerson+Category2.m"; sourceTree = "<group>"; };
+		8DFCB0AF225B2AEF00981B17 /* JKDog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JKDog.h; sourceTree = "<group>"; };
+		8DFCB0B0225B2AEF00981B17 /* JKDog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JKDog.m; sourceTree = "<group>"; };
+		8DFCB0B2225B2B0F00981B17 /* JKDog+Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JKDog+Category.h"; sourceTree = "<group>"; };
+		8DFCB0B3225B2B0F00981B17 /* JKDog+Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "JKDog+Category.m"; sourceTree = "<group>"; };
 		9672F7ED14D5F488007CEC96 /* NSObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NSObject.mm; path = runtime/NSObject.mm; sourceTree = "<group>"; };
 		BC8B5D1212D3D48100C78A5B /* libauto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libauto.dylib; path = /usr/lib/libauto.dylib; sourceTree = "<absolute>"; };
 		D2AAC0630554660B00DB518D /* libobjc.A.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libobjc.A.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -382,6 +397,16 @@
 			isa = PBXGroup;
 			children = (
 				5255259A21C68E3C00072CE6 /* main.m */,
+				8DFCB0A6225B273F00981B17 /* JKPerson.h */,
+				8DFCB0A7225B273F00981B17 /* JKPerson.m */,
+				8DFCB0AF225B2AEF00981B17 /* JKDog.h */,
+				8DFCB0B0225B2AEF00981B17 /* JKDog.m */,
+				8DFCB0B2225B2B0F00981B17 /* JKDog+Category.h */,
+				8DFCB0B3225B2B0F00981B17 /* JKDog+Category.m */,
+				8DFCB0A9225B275A00981B17 /* JKPerson+Category1.h */,
+				8DFCB0AA225B275A00981B17 /* JKPerson+Category1.m */,
+				8DFCB0AC225B276600981B17 /* JKPerson+Category2.h */,
+				8DFCB0AD225B276600981B17 /* JKPerson+Category2.m */,
 			);
 			path = "objc-test";
 			sourceTree = "<group>";
@@ -757,7 +782,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DFCB0B1225B2AEF00981B17 /* JKDog.m in Sources */,
+				8DFCB0B4225B2B0F00981B17 /* JKDog+Category.m in Sources */,
+				8DFCB0AB225B275A00981B17 /* JKPerson+Category1.m in Sources */,
 				5255259B21C68E3C00072CE6 /* main.m in Sources */,
+				8DFCB0AE225B276600981B17 /* JKPerson+Category2.m in Sources */,
+				8DFCB0A8225B273F00981B17 /* JKPerson.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1084,6 +1084,7 @@ public:
 #else
     size_t fastInstanceSize() {
         abort();
+        
     }
     void setFastInstanceSize(size_t) {
         // nothing
@@ -1129,12 +1130,34 @@ public:
 };
 
 
+// 如果是 __OBJC2__ objc_class 继承自 objc_object  isa 指针在objc_object中
+/*
+ struct objc_object {
+ private:
+ isa_t isa; // isa指针
+ 
+ 
+ public:
+ 
+ // ISA() assumes this is NOT a tagged pointer object
+ Class ISA();
+ 
+ // getIsa() allows this to be a tagged pointer object
+ Class getIsa();
+ ......
+ */
 struct objc_class : objc_object {
     // Class ISA;
+   
+    // 父类的指针
     Class superclass;
+    //cache结构体  用于缓存指针和 vtable，加速方法的调用
     cache_t cache;             // formerly cache pointer and vtable
+    // class_data_bits_t结构体  存储类的方法、属性、遵循的协议等信息的地方
+    // class_data_bits_t 只有 unsigned long 类型的 bits 这一个成员变量 通过&一个地址获取 存储的数据的地址
     class_data_bits_t bits;    // class_rw_t * plus custom rr/alloc flags
 
+    // bits & FAST_DATA_MASK 得到（class_rw_t *）data 的地址
     class_rw_t *data() { 
         return bits.data();
     }
@@ -1169,6 +1192,12 @@ struct objc_class : objc_object {
     void setHasCustomRR(bool inherited = false);
     void printCustomRR(bool inherited);
 
+    
+    /**
+     方法是用来判断当前class是否有默认的allocWithZone
+
+     @return <#return value description#>
+     */
     bool hasCustomAWZ() {
         return ! bits.hasDefaultAWZ();
     }
