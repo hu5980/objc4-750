@@ -46,6 +46,10 @@ extern "C" {
     extern Class objc_debug_taggedpointer_classes[_OBJC_TAG_SLOT_COUNT*2];
     extern Class objc_debug_taggedpointer_ext_classes[_OBJC_TAG_EXT_SLOT_COUNT];
 }
+/*
+ 数组objc_tag_classes：存储苹果定义的几个基础类；
+ 数组objc_tag_ext_classes：存储苹果预留的扩展类；
+ */
 #define objc_tag_classes objc_debug_taggedpointer_classes
 #define objc_tag_ext_classes objc_debug_taggedpointer_ext_classes
 
@@ -722,6 +726,7 @@ objc_object::rootRelease(bool performDealloc, bool handleUnderflow)
 
 
 // Equivalent to [this autorelease], with shortcuts if there is no override
+// autorelease 的实现
 inline id 
 objc_object::autorelease()
 {
@@ -746,14 +751,19 @@ objc_object::rootAutorelease()
 inline uintptr_t 
 objc_object::rootRetainCount()
 {
+    // 首先判断是不是TaggedPointer 这中类型
     if (isTaggedPointer()) return (uintptr_t)this;
 
     sidetable_lock();
     isa_t bits = LoadExclusive(&isa.bits);
     ClearExclusive(&isa.bits);
+    // 如果是nonpointer
     if (bits.nonpointer) {
+        // 1 加上 isa_t 中的引用计数的个数
         uintptr_t rc = 1 + bits.extra_rc;
+        // 如果存在引用计数表
         if (bits.has_sidetable_rc) {
+            // 2 再加上引用计数表 中的
             rc += sidetable_getExtraRC_nolock();
         }
         sidetable_unlock();

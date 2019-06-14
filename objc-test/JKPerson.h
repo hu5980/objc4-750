@@ -11,6 +11,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JKPerson : NSObject
 
+@property (nonatomic,copy) NSMutableArray *mutableArray;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

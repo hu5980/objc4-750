@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "runtime/objc-runtime-new.h"
-            timestampString = "576397565.151297"
+            timestampString = "578748220.627658"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1354"
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "runtime/objc-object.h"
-            timestampString = "576151728.5151139"
+            timestampString = "578748498.154796"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
             landmarkName = "objc_object::isTaggedPointer()"
             landmarkType = "7">
          </BreakpointContent>
@@ -83,28 +83,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "objc-test/main.m"
-            timestampString = "576406584.818922"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "main()"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "runtime/objc-object.h"
-            timestampString = "576151728.515249"
+            timestampString = "578748498.1548541"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "495"
-            endingLineNumber = "495"
+            startingLineNumber = "499"
+            endingLineNumber = "499"
             landmarkName = "objc_object::rootRetain(bool tryRetain, bool handleOverflow)"
             landmarkType = "7">
             <Locations>
@@ -223,11 +207,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "runtime/objc-object.h"
-            timestampString = "576151728.515305"
+            timestampString = "578748498.154898"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "496"
-            endingLineNumber = "496"
+            startingLineNumber = "500"
+            endingLineNumber = "500"
             landmarkName = "objc_object::rootRetain(bool tryRetain, bool handleOverflow)"
             landmarkType = "7">
             <Locations>
@@ -346,11 +330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "runtime/objc-object.h"
-            timestampString = "576151728.515361"
+            timestampString = "578748498.1549391"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "635"
-            endingLineNumber = "635"
+            startingLineNumber = "639"
+            endingLineNumber = "639"
             landmarkName = "objc_object::rootRelease(bool performDealloc, bool handleUnderflow)"
             landmarkType = "7">
             <Locations>
@@ -362,11 +346,11 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-object.h"
-                  timestampString = "576406564.928234"
+                  timestampString = "581590434.424732"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "635"
-                  endingLineNumber = "635"
+                  startingLineNumber = "640"
+                  endingLineNumber = "640"
                   offsetFromSymbolStart = "756">
                </Location>
                <Location
@@ -377,11 +361,11 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-object.h"
-                  timestampString = "576406564.930589"
+                  timestampString = "581590434.428414"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "635"
-                  endingLineNumber = "635"
+                  startingLineNumber = "640"
+                  endingLineNumber = "640"
                   offsetFromSymbolStart = "756">
                </Location>
                <Location
@@ -392,11 +376,11 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-object.h"
-                  timestampString = "576406564.933916"
+                  timestampString = "581590434.4319071"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "635"
-                  endingLineNumber = "635"
+                  startingLineNumber = "640"
+                  endingLineNumber = "640"
                   offsetFromSymbolStart = "801">
                </Location>
                <Location
@@ -407,11 +391,11 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-object.h"
-                  timestampString = "576406564.937439"
+                  timestampString = "581590434.4355071"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "635"
-                  endingLineNumber = "635"
+                  startingLineNumber = "640"
+                  endingLineNumber = "640"
                   offsetFromSymbolStart = "701">
                </Location>
                <Location
@@ -422,11 +406,11 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-object.h"
-                  timestampString = "576406564.9407589"
+                  timestampString = "581590434.43966"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "635"
-                  endingLineNumber = "635"
+                  startingLineNumber = "640"
+                  endingLineNumber = "640"
                   offsetFromSymbolStart = "695">
                </Location>
             </Locations>
@@ -439,23 +423,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "runtime/NSObject.mm"
-            timestampString = "576155933.771469"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1016"
-            endingLineNumber = "1016"
-            landmarkName = "autorelease(id obj)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "runtime/NSObject.mm"
-            timestampString = "576155933.771553"
+            timestampString = "581590323.841118"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1728"
@@ -470,24 +438,8 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "objc-test/main.m"
-            timestampString = "576406584.819073"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "main()"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "runtime/NSObject.mm"
-            timestampString = "576155933.771713"
+            timestampString = "581590323.841206"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1768"
@@ -565,7 +517,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "runtime/NSObject.mm"
-            timestampString = "576155933.771791"
+            timestampString = "581590323.841273"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1772"
@@ -643,11 +595,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "runtime/objc-object.h"
-            timestampString = "576151728.5163651"
+            timestampString = "578748498.155023"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "514"
-            endingLineNumber = "514"
+            startingLineNumber = "518"
+            endingLineNumber = "518"
             landmarkName = "objc_object::rootRetain(bool tryRetain, bool handleOverflow)"
             landmarkType = "7">
             <Locations>
@@ -766,11 +718,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "runtime/objc-object.h"
-            timestampString = "576151728.516421"
+            timestampString = "578748498.155066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "674"
-            endingLineNumber = "674"
+            startingLineNumber = "678"
+            endingLineNumber = "678"
             landmarkName = "objc_object::rootRelease(bool performDealloc, bool handleUnderflow)"
             landmarkType = "7">
             <Locations>
@@ -782,11 +734,11 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-object.h"
-                  timestampString = "576406564.944584"
+                  timestampString = "581590434.447179"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "674"
-                  endingLineNumber = "674"
+                  startingLineNumber = "679"
+                  endingLineNumber = "679"
                   offsetFromSymbolStart = "1224">
                </Location>
                <Location
@@ -797,11 +749,11 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-object.h"
-                  timestampString = "576406564.946461"
+                  timestampString = "581590434.451395"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "674"
-                  endingLineNumber = "674"
+                  startingLineNumber = "679"
+                  endingLineNumber = "679"
                   offsetFromSymbolStart = "1224">
                </Location>
                <Location
@@ -812,11 +764,11 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-object.h"
-                  timestampString = "576406564.948682"
+                  timestampString = "581590434.4559751"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "674"
-                  endingLineNumber = "674"
+                  startingLineNumber = "679"
+                  endingLineNumber = "679"
                   offsetFromSymbolStart = "1269">
                </Location>
                <Location
@@ -827,11 +779,11 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-object.h"
-                  timestampString = "576406564.952158"
+                  timestampString = "581590434.460184"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "674"
-                  endingLineNumber = "674"
+                  startingLineNumber = "679"
+                  endingLineNumber = "679"
                   offsetFromSymbolStart = "1169">
                </Location>
                <Location
@@ -842,11 +794,11 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-object.h"
-                  timestampString = "576406564.954443"
+                  timestampString = "581590434.4647681"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "674"
-                  endingLineNumber = "674"
+                  startingLineNumber = "679"
+                  endingLineNumber = "679"
                   offsetFromSymbolStart = "1163">
                </Location>
             </Locations>
@@ -859,7 +811,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "runtime/objc-runtime-new.h"
-            timestampString = "576397565.151629"
+            timestampString = "578748220.628058"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "925"
@@ -875,7 +827,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "runtime/objc-runtime-new.h"
-            timestampString = "576397565.15167"
+            timestampString = "578748220.628094"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "935"
@@ -907,7 +859,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "runtime/objc-runtime-new.mm"
-            timestampString = "576406584.81925"
+            timestampString = "581590433.148297"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "806"
@@ -923,7 +875,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "runtime/objc-runtime-new.mm"
-            timestampString = "576406584.819941"
+            timestampString = "581590433.148885"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "767"
@@ -939,7 +891,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "runtime/objc-runtime-new.mm"
-            timestampString = "576406584.8204941"
+            timestampString = "581590433.149493"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "2782"
@@ -955,7 +907,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "runtime/objc-runtime-new.mm"
-            timestampString = "576406584.8210109"
+            timestampString = "581590433.149902"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "949"
@@ -1002,40 +954,8 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "runtime/objc-object.h"
-            timestampString = "576472370.4609179"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "405"
-            endingLineNumber = "405"
-            landmarkName = "objc_object::clearDeallocating()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "runtime/objc-object.h"
-            timestampString = "576472372.71056"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "409"
-            endingLineNumber = "409"
-            landmarkName = "objc_object::clearDeallocating()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "runtime/objc-weak.mm"
-            timestampString = "576472641.6737731"
+            timestampString = "578748498.157042"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "469"
@@ -1050,62 +970,325 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "runtime/objc-object.h"
-            timestampString = "576473832.425365"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "557"
-            endingLineNumber = "557"
-            landmarkName = "objc_object::release()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "runtime/objc-object.h"
-            timestampString = "576474008.966149"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "611"
-            endingLineNumber = "611"
-            landmarkName = "objc_object::rootRelease(bool performDealloc, bool handleUnderflow)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "runtime/objc-object.h"
-            timestampString = "576474011.745003"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "594"
-            endingLineNumber = "594"
-            landmarkName = "objc_object::rootRelease(bool performDealloc, bool handleUnderflow)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "runtime/NSObject.mm"
-            timestampString = "576475280.047644"
+            timestampString = "581590323.8434629"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1555"
             endingLineNumber = "1555"
             landmarkName = "objc_object::sidetable_release(bool performDealloc)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "runtime/objc-internal.h"
+            timestampString = "578748498.15733"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "395"
+            endingLineNumber = "395"
+            landmarkName = "_objc_makeTaggedPointer(objc_tag_index_t tag, uintptr_t value)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "runtime/objc-accessors.mm"
+            timestampString = "581590433.150568"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "reallySetProperty(id self, SEL _cmd, id newValue, ptrdiff_t offset, bool atomic, bool copy, bool mutableCopy)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "objc_setProperty"
+                  moduleName = "libobjc.A.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-accessors.mm"
+                  timestampString = "581590434.484933"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "161">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "objc_setProperty_atomic"
+                  moduleName = "libobjc.A.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-accessors.mm"
+                  timestampString = "581590434.489054"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "68">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "objc_setProperty_nonatomic"
+                  moduleName = "libobjc.A.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-accessors.mm"
+                  timestampString = "581590434.492622"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "68">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "objc_setProperty_atomic_copy"
+                  moduleName = "libobjc.A.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-accessors.mm"
+                  timestampString = "581590434.496088"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "68">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "objc_setProperty_nonatomic_copy"
+                  moduleName = "libobjc.A.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-accessors.mm"
+                  timestampString = "581590434.499653"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "68">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "runtime/objc-accessors.mm"
+            timestampString = "581590433.151337"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "reallySetProperty(id self, SEL _cmd, id newValue, ptrdiff_t offset, bool atomic, bool copy, bool mutableCopy)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "objc_setProperty"
+                  moduleName = "libobjc.A.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-accessors.mm"
+                  timestampString = "581590434.506731"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "220">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "objc_setProperty_atomic"
+                  moduleName = "libobjc.A.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-accessors.mm"
+                  timestampString = "581590434.510722"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "127">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "objc_setProperty_nonatomic"
+                  moduleName = "libobjc.A.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-accessors.mm"
+                  timestampString = "581590434.514856"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "127">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "objc_setProperty_atomic_copy"
+                  moduleName = "libobjc.A.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-accessors.mm"
+                  timestampString = "581590434.519176"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "127">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "objc_setProperty_nonatomic_copy"
+                  moduleName = "libobjc.A.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-accessors.mm"
+                  timestampString = "581590434.523219"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "127">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "runtime/objc-accessors.mm"
+            timestampString = "581590433.151992"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "reallySetProperty(id self, SEL _cmd, id newValue, ptrdiff_t offset, bool atomic, bool copy, bool mutableCopy)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "objc_setProperty"
+                  moduleName = "libobjc.A.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-accessors.mm"
+                  timestampString = "581590434.529189"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "86"
+                  endingLineNumber = "86"
+                  offsetFromSymbolStart = "260">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "objc_setProperty_atomic"
+                  moduleName = "libobjc.A.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-accessors.mm"
+                  timestampString = "581590434.532637"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "86"
+                  endingLineNumber = "86"
+                  offsetFromSymbolStart = "167">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "objc_setProperty_nonatomic"
+                  moduleName = "libobjc.A.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-accessors.mm"
+                  timestampString = "581590434.5364799"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "86"
+                  endingLineNumber = "86"
+                  offsetFromSymbolStart = "167">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "objc_setProperty_atomic_copy"
+                  moduleName = "libobjc.A.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-accessors.mm"
+                  timestampString = "581590434.540436"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "86"
+                  endingLineNumber = "86"
+                  offsetFromSymbolStart = "167">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "objc_setProperty_nonatomic_copy"
+                  moduleName = "libobjc.A.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-accessors.mm"
+                  timestampString = "581590434.543972"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "86"
+                  endingLineNumber = "86"
+                  offsetFromSymbolStart = "167">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "runtime/objc-object.h"
+            timestampString = "581597883.2588969"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1234"
+            endingLineNumber = "1234"
+            landmarkName = "acceptOptimizedReturn()"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

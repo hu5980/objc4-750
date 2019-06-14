@@ -10,6 +10,9 @@
 @implementation JKPerson (Category1)
 - (void)addMethod {
     NSLog(@"添加方法");
+    
+    
+    
 }
 
 @end

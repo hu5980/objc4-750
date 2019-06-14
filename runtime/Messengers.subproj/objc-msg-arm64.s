@@ -298,7 +298,7 @@ LExit$0:
 	.globl _objc_debug_taggedpointer_classes
 _objc_debug_taggedpointer_classes:
 	.fill 16, 8, 0
-	.globl _objc_debug_taggedpointer_ext_classes
+	.globl _objc_debug_taggedpointer_ext_classes  //初始化
 _objc_debug_taggedpointer_ext_classes:
 	.fill 256, 8, 0
 #endif

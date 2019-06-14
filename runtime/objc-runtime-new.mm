@@ -1898,7 +1898,7 @@ static void reconcileInstanceVariables(Class cls, Class supercls, const class_ro
 static Class realizeClass(Class cls)
 {
     
-    printf("class Name = %s\n",class_getName(cls));
+//    printf("class Name = %s\n",class_getName(cls));
     
     if(strcmp(class_getName(cls), "JKPerson") == 0){
         printf("xiangdeng");
@@ -2932,7 +2932,7 @@ static void schedule_class_load(Class cls)
     // 这里有一个递归调用 ，如果有父类 会先将父类加进去
     schedule_class_load(cls->superclass);
     // 将cls添加到loadable_classes数组的后面
-    printf("load_category_class = %s\n",class_getName(cls));
+//    printf("load_category_class = %s\n",class_getName(cls));
     add_class_to_loadable_list(cls);
     cls->setInfo(RW_LOADED); 
 }
@@ -6912,6 +6912,10 @@ disableTaggedPointers()
 
 // Returns a pointer to the class's storage in the tagged class arrays.
 // Assumes the tag is a valid basic tag.
+/*
+ classSlotForBasicTagIndex() 函数的主要功能就是根据指定索引 tag 从数组 objc_tag_classes中获取类指针；
+ 该函数要求索引tag是个有效的索引
+ */
 static Class *
 classSlotForBasicTagIndex(objc_tag_index_t tag)
 {
@@ -6919,6 +6923,7 @@ classSlotForBasicTagIndex(objc_tag_index_t tag)
                                 >> _OBJC_TAG_INDEX_SHIFT)
                                & _OBJC_TAG_INDEX_MASK);
     uintptr_t obfuscatedTag = tag ^ tagObfuscator;
+    // objc_tag_classes 数组的索引包含标记的位本身
     // Array index in objc_tag_classes includes the tagged bit itself
 #if SUPPORT_MSB_TAGGED_POINTERS
     return &objc_tag_classes[0x8 | obfuscatedTag];
@@ -6930,6 +6935,11 @@ classSlotForBasicTagIndex(objc_tag_index_t tag)
 
 // Returns a pointer to the class's storage in the tagged class arrays, 
 // or nil if the tag is out of range.
+/*
+ 当索引tag为基础类的索引时，去数组objc_tag_classes中取数据；
+ 当索引tag为扩展类的索引时，去数组objc_tag_ext_classes中取数据；
+ 当索引tag无效时，返回一个 nil
+ */
 static Class *  
 classSlotForTagIndex(objc_tag_index_t tag)
 {
@@ -6982,28 +6992,48 @@ initializeTaggedPointerObfuscator(void)
 * Aborts if the tag is out of range, or if the tag is already 
 * used by some other class.
 **********************************************************************/
+/*
+ 1、首先判断 objc_debug_taggedpointer_mask是否为 0 ，也就是判断开发者是否把 OBJC_DISABLE_TAGGED_POINTERS 设置为 YES；如果禁用了 Tagged Pointer，那么不好意思，直接调用 _objc_fatal()函数终止该程序，不让该程序启动！
+ 只有启用 Tagged Pointer，程序才有执行下去的意义！
+ 2、根据索引 tag去取出数组objc_tag_classes或数组objc_tag_ext_classes中指定的类指针classSlotForTagIndex(tag)：
+ 如果传递无效的索引 tag，获取一个 nil，还是要调用_objc_fatal()终止该程序；
+ 3、尝试着去获取该指针指向的类Class oldCls = *slot：如果要注册的类和该处的类不是同一个？不好意思，_objc_fatal()终止程序！
+ 只有类指针 slot指向的位置为 NULL，或者类指针 slot指向的位置就是存储着我们要注册的类，系统才能安稳的运行下去；
+ 4、将入参cls赋值给类指针 slot指向的位置*slot = cls；到此，该函数的功能经过重重考验就已经实现了！
+ 5、假如注册的不是基础类，而是第一次注册扩展类，该函数还有个额外功能：在OBJC_TAG_RESERVED_7出存储占位类 OBJC_CLASS_$___NSUnrecognizedTaggedPointer
+ 链接：https://www.jianshu.com/p/3176e30c040b
+ */
 void
 _objc_registerTaggedPointerClass(objc_tag_index_t tag, Class cls)
 {
     if (objc_debug_taggedpointer_mask == 0) {
         _objc_fatal("tagged pointers are disabled");
     }
+    
+    printf("tag = %d,Class:%s \n",tag,cls->demangledName());
+    /*
+     classSlotForBasicTagIndex() 函数与classSlotForTagIndex()
+     函数的本质就是获取数组objc_tag_classes与数组objc_tag_ext_classes中的数据
+     而索引 objc_tag_index_t 又用来在Tagged Pointer对象标记存储的类！
+     */
 
+    //根据索引获取指定的类指针
     Class *slot = classSlotForTagIndex(tag);
     if (!slot) {
         _objc_fatal("tag index %u is invalid", (unsigned int)tag);
     }
 
-    Class oldCls = *slot;
+    Class oldCls = *slot;//取出指针指向的类
     
     if (cls  &&  oldCls  &&  cls != oldCls) {
+        //指定的索引被用于两个不同的类，终止程序
         _objc_fatal("tag index %u used for two different classes "
                     "(was %p %s, now %p %s)", tag, 
                     oldCls, oldCls->nameForLogging(), 
                     cls, cls->nameForLogging());
     }
 
-    *slot = cls;
+    *slot = cls;//将入参 cls 赋值给该类指针指向的地址
 
     // Store a placeholder class in the basic tag slot that is 
     // reserved for the extended tag space, if it isn't set already.
