@@ -230,7 +230,7 @@ objc_copyClassNamesForImageHeader(const struct mach_header * _Nonnull mh,
 // Tag index 7 is reserved.
 // Tag indexes 8..<264 have a 52-bit payload.
 // Tag index 264 is reserved.
-
+// objc_tag_index_t 就是个枚举变量，存储在 Tagged Pointer的特殊标记的部位
 #if __has_feature(objc_fixed_enum)  ||  __cplusplus >= 201103L
 enum objc_tag_index_t : uint16_t
 #else
@@ -241,14 +241,14 @@ enum
     // 60-bit payloads
     OBJC_TAG_NSAtom            = 0, 
     OBJC_TAG_1                 = 1, 
-    OBJC_TAG_NSString          = 2, 
-    OBJC_TAG_NSNumber          = 3, 
-    OBJC_TAG_NSIndexPath       = 4, 
+    OBJC_TAG_NSString          = 2, //表示这是一个NSString对象
+    OBJC_TAG_NSNumber          = 3, //表示这是一个NSNumber对象
+    OBJC_TAG_NSIndexPath       = 4, //表示这是一个NSIndexPath对象
     OBJC_TAG_NSManagedObjectID = 5, 
-    OBJC_TAG_NSDate            = 6,
+    OBJC_TAG_NSDate            = 6,//表示这是一个NSDate对象
 
     // 60-bit reserved
-    OBJC_TAG_RESERVED_7        = 7, 
+    OBJC_TAG_RESERVED_7        = 7, //60位净负荷： 索引 7 被保留
 
     // 52-bit payloads
     OBJC_TAG_Photos_1          = 8,
@@ -262,10 +262,10 @@ enum
 
     OBJC_TAG_First60BitPayload = 0, 
     OBJC_TAG_Last60BitPayload  = 6, 
-    OBJC_TAG_First52BitPayload = 8, 
-    OBJC_TAG_Last52BitPayload  = 263, 
+    OBJC_TAG_First52BitPayload = 8, // 52 位净负荷的开始处
+    OBJC_TAG_Last52BitPayload  = 263,  // 52 位净负荷的结束处
 
-    OBJC_TAG_RESERVED_264      = 264
+    OBJC_TAG_RESERVED_264      = 264 // 52 位净负荷： 索引 264 被保留
 };
 #if __has_feature(objc_fixed_enum)  &&  !defined(__cplusplus)
 typedef enum objc_tag_index_t objc_tag_index_t;
@@ -385,12 +385,15 @@ _objc_taggedPointersEnabled(void)
     return (objc_debug_taggedpointer_mask != 0);
 }
 
+// 用来存储Tagged Pointer 数据
 static inline void * _Nonnull
 _objc_makeTaggedPointer(objc_tag_index_t tag, uintptr_t value)
 {
     // PAYLOAD_LSHIFT and PAYLOAD_RSHIFT are the payload extraction shifts.
     // They are reversed here for payload insertion.
 
+    printf("tag = %d,value = %lu",tag,value);
+    
     // assert(_objc_taggedPointersEnabled());
     if (tag <= OBJC_TAG_Last60BitPayload) {
         // assert(((value << _OBJC_TAG_PAYLOAD_RSHIFT) >> _OBJC_TAG_PAYLOAD_LSHIFT) == value);

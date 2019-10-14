@@ -284,10 +284,11 @@ BREAKPOINT_FUNCTION(
 int objc_sync_enter(id obj)
 {
     int result = OBJC_SYNC_SUCCESS;
-
+    // 如果obj为nil @synchronized 不会起作用
     if (obj) {
         SyncData* data = id2data(obj, ACQUIRE);
         assert(data);
+        // 调用SyncData 里面的递归锁
         data->mutex.lock();
     } else {
         // @synchronized(nil) does nothing
@@ -306,12 +307,14 @@ int objc_sync_enter(id obj)
 int objc_sync_exit(id obj)
 {
     int result = OBJC_SYNC_SUCCESS;
-    
+   
     if (obj) {
-        SyncData* data = id2data(obj, RELEASE); 
+        SyncData* data = id2data(obj, RELEASE);
+        //data 为nil 报错
         if (!data) {
             result = OBJC_SYNC_NOT_OWNING_THREAD_ERROR;
         } else {
+            //尝试解锁
             bool okay = data->mutex.tryUnlock();
             if (!okay) {
                 result = OBJC_SYNC_NOT_OWNING_THREAD_ERROR;

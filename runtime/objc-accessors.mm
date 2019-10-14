@@ -45,6 +45,7 @@ StripedMap<spinlock_t> CppObjectLocks;
 
 #define MUTABLE_COPY 2
 
+/*atomic 原子性 spinlock_t 用的是自旋锁来实现的*/
 id objc_getProperty(id self, SEL _cmd, ptrdiff_t offset, BOOL atomic) {
     if (offset == 0) {
         return object_getClass(self);
@@ -77,6 +78,7 @@ static inline void reallySetProperty(id self, SEL _cmd, id newValue, ptrdiff_t o
     id oldValue;
     id *slot = (id*) ((char*)self + offset);
 
+    // copy 为1 的时候 会调用 copyWithZone 从而生成不可变的内存卡
     if (copy) {
         newValue = [newValue copyWithZone:nil];
     } else if (mutableCopy) {
@@ -102,6 +104,9 @@ static inline void reallySetProperty(id self, SEL _cmd, id newValue, ptrdiff_t o
     objc_release(oldValue);
 }
 
+/*
+ @property 修饰的属性 会调用 objc_setProperty 如果属性修饰符是copy的话 shouldCopy 会传1
+ */
 void objc_setProperty(id self, SEL _cmd, ptrdiff_t offset, id newValue, BOOL atomic, signed char shouldCopy) 
 {
     bool copy = (shouldCopy && shouldCopy != MUTABLE_COPY);

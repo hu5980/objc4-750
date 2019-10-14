@@ -1403,7 +1403,9 @@ size_t
 objc_object::sidetable_getExtraRC_nolock()
 {
     assert(isa.nonpointer);
+    // 通过一个hash查找 找到SideTable
     SideTable& table = SideTables()[this];
+    // 再通过一次hash查找 找到SideTable
     RefcountMap::iterator it = table.refcnts.find(this);
     if (it == table.refcnts.end()) return 0;
     else return it->second >> SIDE_TABLE_RC_SHIFT;
@@ -1923,6 +1925,7 @@ objc_retainAutoreleaseReturnValue(id obj)
 }
 
 // Accept a value returned through a +0 autoreleasing convention for use at +1.
+// 线程中的标志被设置成 ReturnAtPlus1 时，直接返回对象（因为返回之前没有进行 autorelease），否则进行 retain 操作（方法返回时进行了 autorelease 操作）
 id
 objc_retainAutoreleasedReturnValue(id obj)
 {

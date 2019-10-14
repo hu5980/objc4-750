@@ -388,6 +388,7 @@ weak_unregister_no_lock(weak_table_t *weak_table, id referent_id,
  * @param referent The object pointed to by the weak reference.
  * @param referrer The weak pointer address.
  */
+/*添加弱引用指针*/
 id 
 weak_register_no_lock(weak_table_t *weak_table, id referent_id, 
                       id *referrer_id, bool crashIfDeallocating)
