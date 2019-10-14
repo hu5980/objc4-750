@@ -9,4 +9,8 @@
 
 @implementation JKPerson
 
+- (void)setMutableArray:(NSMutableArray *)mutableArray {
+    _mutableArray = [mutableArray mutableCopy];
+}
+
 @end

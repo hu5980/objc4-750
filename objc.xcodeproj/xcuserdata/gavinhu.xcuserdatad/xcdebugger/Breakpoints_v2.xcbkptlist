@@ -1,30 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bucket
-   uuid = "E4098678-894A-4D5C-9BA6-06FA76C101C5"
    type = "1"
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "EF606A39-37ED-4F94-AC4A-8ACCA36FAB9C"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "runtime/objc-runtime-new.h"
-            timestampString = "582115995.8154449"
+            timestampString = "578748220.627658"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1354"
             endingLineNumber = "1354"
-            landmarkName = "mangledName()"
-            landmarkType = "7">
+            landmarkName = "objc_class"
+            landmarkType = "14">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "852CF9D3-1D30-4D26-9C2A-7B8C542223AB"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -41,7 +38,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B4C9C96B-5CE7-481B-BAEF-608B5DC92628"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -58,14 +54,12 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.AddressBreakpoint">
          <BreakpointContent
-            uuid = "DCACF359-710C-4ACA-91E3-5DDE967D9026"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             symbolName = "*0x100358aaf">
             <Locations>
                <Location
-                  uuid = "DCACF359-710C-4ACA-91E3-5DDE967D9026 - 3c584375cfe9fdf2"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -86,7 +80,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "FC0D2567-A193-4343-8E5C-B551B311445B"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -100,7 +93,6 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "FC0D2567-A193-4343-8E5C-B551B311445B - ef1eae76dd45fcb7"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -116,7 +108,6 @@
                   offsetFromSymbolStart = "194">
                </Location>
                <Location
-                  uuid = "FC0D2567-A193-4343-8E5C-B551B311445B - 7e5fb45dede28342"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -132,7 +123,6 @@
                   offsetFromSymbolStart = "430">
                </Location>
                <Location
-                  uuid = "FC0D2567-A193-4343-8E5C-B551B311445B - 14c90f74d8e8b4f5"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -148,7 +138,6 @@
                   offsetFromSymbolStart = "239">
                </Location>
                <Location
-                  uuid = "FC0D2567-A193-4343-8E5C-B551B311445B - b26ef29deb949ef1"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -164,7 +153,6 @@
                   offsetFromSymbolStart = "194">
                </Location>
                <Location
-                  uuid = "FC0D2567-A193-4343-8E5C-B551B311445B - 5e6929e4d1347fb6"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -180,7 +168,6 @@
                   offsetFromSymbolStart = "139">
                </Location>
                <Location
-                  uuid = "FC0D2567-A193-4343-8E5C-B551B311445B - 36654225fa837210"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -196,7 +183,6 @@
                   offsetFromSymbolStart = "139">
                </Location>
                <Location
-                  uuid = "FC0D2567-A193-4343-8E5C-B551B311445B - a1ac2936bdb30a61"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -217,7 +203,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4DC34671-186B-4DAE-AB31-0B6F3CB19B82"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -231,7 +216,6 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "4DC34671-186B-4DAE-AB31-0B6F3CB19B82 - ef1eae76dd45fcb7"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -247,7 +231,6 @@
                   offsetFromSymbolStart = "194">
                </Location>
                <Location
-                  uuid = "4DC34671-186B-4DAE-AB31-0B6F3CB19B82 - 7e5fb45dede28342"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -263,7 +246,6 @@
                   offsetFromSymbolStart = "430">
                </Location>
                <Location
-                  uuid = "4DC34671-186B-4DAE-AB31-0B6F3CB19B82 - 14c90f74d8e8b4f5"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -279,7 +261,6 @@
                   offsetFromSymbolStart = "239">
                </Location>
                <Location
-                  uuid = "4DC34671-186B-4DAE-AB31-0B6F3CB19B82 - b26ef29deb949ef1"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -295,7 +276,6 @@
                   offsetFromSymbolStart = "194">
                </Location>
                <Location
-                  uuid = "4DC34671-186B-4DAE-AB31-0B6F3CB19B82 - 5e6929e4d1347fb6"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -311,7 +291,6 @@
                   offsetFromSymbolStart = "139">
                </Location>
                <Location
-                  uuid = "4DC34671-186B-4DAE-AB31-0B6F3CB19B82 - 36654225fa837210"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -327,7 +306,6 @@
                   offsetFromSymbolStart = "139">
                </Location>
                <Location
-                  uuid = "4DC34671-186B-4DAE-AB31-0B6F3CB19B82 - a1ac2936bdb30a61"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -348,7 +326,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DDF23F56-6D90-42D3-A46A-F6EA8D1A3BAE"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -362,7 +339,6 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "DDF23F56-6D90-42D3-A46A-F6EA8D1A3BAE - 675787261c1579d6"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -370,7 +346,7 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-object.h"
-                  timestampString = "582115996.3525749"
+                  timestampString = "581590434.424732"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "640"
@@ -378,7 +354,6 @@
                   offsetFromSymbolStart = "756">
                </Location>
                <Location
-                  uuid = "DDF23F56-6D90-42D3-A46A-F6EA8D1A3BAE - 199e2c35c04b2be0"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -386,7 +361,7 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-object.h"
-                  timestampString = "582115996.354497"
+                  timestampString = "581590434.428414"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "640"
@@ -394,7 +369,6 @@
                   offsetFromSymbolStart = "756">
                </Location>
                <Location
-                  uuid = "DDF23F56-6D90-42D3-A46A-F6EA8D1A3BAE - 5f7797e9b58a8014"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -402,7 +376,7 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-object.h"
-                  timestampString = "582115996.356513"
+                  timestampString = "581590434.4319071"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "640"
@@ -410,7 +384,6 @@
                   offsetFromSymbolStart = "801">
                </Location>
                <Location
-                  uuid = "DDF23F56-6D90-42D3-A46A-F6EA8D1A3BAE - 746725b51493f6d5"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -418,7 +391,7 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-object.h"
-                  timestampString = "582115996.358327"
+                  timestampString = "581590434.4355071"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "640"
@@ -426,7 +399,6 @@
                   offsetFromSymbolStart = "701">
                </Location>
                <Location
-                  uuid = "DDF23F56-6D90-42D3-A46A-F6EA8D1A3BAE - 2e6bd704dbc3abe3"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -434,7 +406,7 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-object.h"
-                  timestampString = "582115996.3599859"
+                  timestampString = "581590434.43966"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "640"
@@ -447,7 +419,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9427AF43-9EB5-48EC-85AB-EB072576E517"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -457,14 +428,13 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1728"
             endingLineNumber = "1728"
-            landmarkName = "_objc_rootAllocWithZone(cls, zone)"
+            landmarkName = "_objc_rootAllocWithZone(Class cls, malloc_zone_t *zone)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "81600E04-429F-4DC0-80BF-351F52AA711E"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -474,11 +444,10 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1768"
             endingLineNumber = "1768"
-            landmarkName = "callAlloc(cls, checkNil)"
+            landmarkName = "callAlloc(Class cls, bool checkNil, bool allocWithZone=false)"
             landmarkType = "9">
             <Locations>
                <Location
-                  uuid = "81600E04-429F-4DC0-80BF-351F52AA711E - 845305889fdea488"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -494,7 +463,6 @@
                   offsetFromSymbolStart = "264">
                </Location>
                <Location
-                  uuid = "81600E04-429F-4DC0-80BF-351F52AA711E - 475dd7a91a9c7080"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -510,7 +478,6 @@
                   offsetFromSymbolStart = "264">
                </Location>
                <Location
-                  uuid = "81600E04-429F-4DC0-80BF-351F52AA711E - 8c1cb5e095e500c0"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -526,7 +493,6 @@
                   offsetFromSymbolStart = "264">
                </Location>
                <Location
-                  uuid = "81600E04-429F-4DC0-80BF-351F52AA711E - bf22eaf4ea73edc6"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -547,7 +513,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "592C9946-738E-4399-BA77-CAF057A21FAB"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -557,11 +522,10 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1772"
             endingLineNumber = "1772"
-            landmarkName = "callAlloc(cls, checkNil)"
+            landmarkName = "callAlloc(Class cls, bool checkNil, bool allocWithZone=false)"
             landmarkType = "9">
             <Locations>
                <Location
-                  uuid = "592C9946-738E-4399-BA77-CAF057A21FAB - 845305889fdea488"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -577,7 +541,6 @@
                   offsetFromSymbolStart = "281">
                </Location>
                <Location
-                  uuid = "592C9946-738E-4399-BA77-CAF057A21FAB - 475dd7a91a9c7080"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -593,7 +556,6 @@
                   offsetFromSymbolStart = "281">
                </Location>
                <Location
-                  uuid = "592C9946-738E-4399-BA77-CAF057A21FAB - 8c1cb5e095e500c0"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -609,7 +571,6 @@
                   offsetFromSymbolStart = "281">
                </Location>
                <Location
-                  uuid = "592C9946-738E-4399-BA77-CAF057A21FAB - bf22eaf4ea73edc6"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -630,7 +591,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "FFA95805-9015-44AA-A855-0DC57743FB0D"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -644,7 +604,6 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "FFA95805-9015-44AA-A855-0DC57743FB0D - ef1eae76dd45fcb7"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -660,7 +619,6 @@
                   offsetFromSymbolStart = "542">
                </Location>
                <Location
-                  uuid = "FFA95805-9015-44AA-A855-0DC57743FB0D - 7e5fb45dede28342"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -676,7 +634,6 @@
                   offsetFromSymbolStart = "778">
                </Location>
                <Location
-                  uuid = "FFA95805-9015-44AA-A855-0DC57743FB0D - 14c90f74d8e8b4f5"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -692,7 +649,6 @@
                   offsetFromSymbolStart = "587">
                </Location>
                <Location
-                  uuid = "FFA95805-9015-44AA-A855-0DC57743FB0D - b26ef29deb949ef1"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -708,7 +664,6 @@
                   offsetFromSymbolStart = "542">
                </Location>
                <Location
-                  uuid = "FFA95805-9015-44AA-A855-0DC57743FB0D - 5e6929e4d1347fb6"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -724,7 +679,6 @@
                   offsetFromSymbolStart = "487">
                </Location>
                <Location
-                  uuid = "FFA95805-9015-44AA-A855-0DC57743FB0D - 36654225fa837210"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -740,7 +694,6 @@
                   offsetFromSymbolStart = "487">
                </Location>
                <Location
-                  uuid = "FFA95805-9015-44AA-A855-0DC57743FB0D - a1ac2936bdb30a61"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -761,7 +714,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B529AB4A-82E7-480C-9E7A-B677B12F67C8"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -775,7 +727,6 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "B529AB4A-82E7-480C-9E7A-B677B12F67C8 - 675787261c1579d6"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -783,7 +734,7 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-object.h"
-                  timestampString = "582115996.362934"
+                  timestampString = "581590434.447179"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "679"
@@ -791,7 +742,6 @@
                   offsetFromSymbolStart = "1224">
                </Location>
                <Location
-                  uuid = "B529AB4A-82E7-480C-9E7A-B677B12F67C8 - 199e2c35c04b2be0"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -799,7 +749,7 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-object.h"
-                  timestampString = "582115996.364599"
+                  timestampString = "581590434.451395"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "679"
@@ -807,7 +757,6 @@
                   offsetFromSymbolStart = "1224">
                </Location>
                <Location
-                  uuid = "B529AB4A-82E7-480C-9E7A-B677B12F67C8 - 5f7797e9b58a8014"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -815,7 +764,7 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-object.h"
-                  timestampString = "582115996.366245"
+                  timestampString = "581590434.4559751"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "679"
@@ -823,7 +772,6 @@
                   offsetFromSymbolStart = "1269">
                </Location>
                <Location
-                  uuid = "B529AB4A-82E7-480C-9E7A-B677B12F67C8 - 746725b51493f6d5"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -831,7 +779,7 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-object.h"
-                  timestampString = "582115996.367788"
+                  timestampString = "581590434.460184"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "679"
@@ -839,7 +787,6 @@
                   offsetFromSymbolStart = "1169">
                </Location>
                <Location
-                  uuid = "B529AB4A-82E7-480C-9E7A-B677B12F67C8 - 2e6bd704dbc3abe3"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -847,7 +794,7 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-object.h"
-                  timestampString = "582115996.369359"
+                  timestampString = "581590434.4647681"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "679"
@@ -860,41 +807,38 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5C223716-A107-474D-921B-580AD35930DE"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "runtime/objc-runtime-new.h"
-            timestampString = "582115995.815972"
+            timestampString = "578748220.628058"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "925"
             endingLineNumber = "925"
-            landmarkName = "setBits(set)"
-            landmarkType = "7">
+            landmarkName = "class_data_bits_t"
+            landmarkType = "14">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "ECAD9714-D785-42B6-AE06-5DF794935326"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "runtime/objc-runtime-new.h"
-            timestampString = "582115995.816208"
+            timestampString = "578748220.628094"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "935"
             endingLineNumber = "935"
-            landmarkName = "clearBits(clear)"
-            landmarkType = "7">
+            landmarkName = "class_data_bits_t"
+            landmarkType = "14">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "30C97CD1-BA55-4CE7-AD8A-4B997200BEE2"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -911,12 +855,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "35A123A0-92C3-450D-B0B4-1733667B7760"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "runtime/objc-runtime-new.mm"
-            timestampString = "582115995.816447"
+            timestampString = "581590433.148297"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "806"
@@ -928,12 +871,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C1E9D811-2DB5-469F-AF9B-F0178BD580F2"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "runtime/objc-runtime-new.mm"
-            timestampString = "582115995.816704"
+            timestampString = "581590433.148885"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "767"
@@ -945,12 +887,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DB2BE478-C0E6-4BEE-A016-750FF03B520A"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "runtime/objc-runtime-new.mm"
-            timestampString = "582115995.816936"
+            timestampString = "581590433.149493"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "2782"
@@ -962,12 +903,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "62DF607A-7EC7-4DD6-A216-9B16A2DAE604"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "runtime/objc-runtime-new.mm"
-            timestampString = "582115995.817175"
+            timestampString = "581590433.149902"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "949"
@@ -979,7 +919,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4C17326D-A85D-488A-9A79-9F53E8082474"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -996,7 +935,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A6259676-701A-4885-9CF9-62E78DA71256"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -1013,7 +951,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "59AD3879-1323-4C83-B3F2-7E7790419B07"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -1030,7 +967,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "639C40EB-B6D7-45C2-8F34-9634969D1464"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -1040,14 +976,13 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1555"
             endingLineNumber = "1555"
-            landmarkName = "objc_object::sidetable_release(performDealloc)"
+            landmarkName = "objc_object::sidetable_release(bool performDealloc)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DE93B04B-FDE3-4811-B31B-036FBB484ED3"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -1064,7 +999,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4E58952A-9505-40F8-A986-076C3657F95F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -1078,7 +1012,6 @@
             landmarkType = "9">
             <Locations>
                <Location
-                  uuid = "4E58952A-9505-40F8-A986-076C3657F95F - 8d4f8ffaca72251d"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1086,15 +1019,14 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-accessors.mm"
-                  timestampString = "582115996.378791"
+                  timestampString = "581590434.484933"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "74"
                   endingLineNumber = "74"
-                  offsetFromSymbolStart = "172">
+                  offsetFromSymbolStart = "161">
                </Location>
                <Location
-                  uuid = "4E58952A-9505-40F8-A986-076C3657F95F - e75c599718529e02"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1102,15 +1034,14 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-accessors.mm"
-                  timestampString = "582115996.380173"
+                  timestampString = "581590434.489054"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "74"
                   endingLineNumber = "74"
-                  offsetFromSymbolStart = "79">
+                  offsetFromSymbolStart = "68">
                </Location>
                <Location
-                  uuid = "4E58952A-9505-40F8-A986-076C3657F95F - 9f9bde854dc5c64c"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1118,15 +1049,14 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-accessors.mm"
-                  timestampString = "582115996.381753"
+                  timestampString = "581590434.492622"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "74"
                   endingLineNumber = "74"
-                  offsetFromSymbolStart = "79">
+                  offsetFromSymbolStart = "68">
                </Location>
                <Location
-                  uuid = "4E58952A-9505-40F8-A986-076C3657F95F - bc5140e0f5dd2063"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1134,15 +1064,14 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-accessors.mm"
-                  timestampString = "582115996.383165"
+                  timestampString = "581590434.496088"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "74"
                   endingLineNumber = "74"
-                  offsetFromSymbolStart = "79">
+                  offsetFromSymbolStart = "68">
                </Location>
                <Location
-                  uuid = "4E58952A-9505-40F8-A986-076C3657F95F - ccd88beaeb6f82ad"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1150,12 +1079,12 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-accessors.mm"
-                  timestampString = "582115996.38462"
+                  timestampString = "581590434.499653"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "74"
                   endingLineNumber = "74"
-                  offsetFromSymbolStart = "79">
+                  offsetFromSymbolStart = "68">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1163,7 +1092,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A58E6EDD-F464-48B8-8465-F1EFC0695BD4"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -1177,7 +1105,6 @@
             landmarkType = "9">
             <Locations>
                <Location
-                  uuid = "A58E6EDD-F464-48B8-8465-F1EFC0695BD4 - 8d4f8ffaca72251d"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1185,15 +1112,14 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-accessors.mm"
-                  timestampString = "582115996.387266"
+                  timestampString = "581590434.506731"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "84"
                   endingLineNumber = "84"
-                  offsetFromSymbolStart = "241">
+                  offsetFromSymbolStart = "220">
                </Location>
                <Location
-                  uuid = "A58E6EDD-F464-48B8-8465-F1EFC0695BD4 - e75c599718529e02"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1201,15 +1127,14 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-accessors.mm"
-                  timestampString = "582115996.38922"
+                  timestampString = "581590434.510722"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "84"
                   endingLineNumber = "84"
-                  offsetFromSymbolStart = "148">
+                  offsetFromSymbolStart = "127">
                </Location>
                <Location
-                  uuid = "A58E6EDD-F464-48B8-8465-F1EFC0695BD4 - 9f9bde854dc5c64c"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1217,15 +1142,14 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-accessors.mm"
-                  timestampString = "582115996.39086"
+                  timestampString = "581590434.514856"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "84"
                   endingLineNumber = "84"
-                  offsetFromSymbolStart = "148">
+                  offsetFromSymbolStart = "127">
                </Location>
                <Location
-                  uuid = "A58E6EDD-F464-48B8-8465-F1EFC0695BD4 - bc5140e0f5dd2063"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1233,15 +1157,14 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-accessors.mm"
-                  timestampString = "582115996.392455"
+                  timestampString = "581590434.519176"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "84"
                   endingLineNumber = "84"
-                  offsetFromSymbolStart = "148">
+                  offsetFromSymbolStart = "127">
                </Location>
                <Location
-                  uuid = "A58E6EDD-F464-48B8-8465-F1EFC0695BD4 - ccd88beaeb6f82ad"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1249,12 +1172,12 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-accessors.mm"
-                  timestampString = "582115996.394091"
+                  timestampString = "581590434.523219"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "84"
                   endingLineNumber = "84"
-                  offsetFromSymbolStart = "148">
+                  offsetFromSymbolStart = "127">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1262,7 +1185,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3F45E7A1-42D4-48FE-9CD9-235744D63396"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -1276,7 +1198,6 @@
             landmarkType = "9">
             <Locations>
                <Location
-                  uuid = "3F45E7A1-42D4-48FE-9CD9-235744D63396 - 8d4f8ffaca72251d"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1284,15 +1205,14 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-accessors.mm"
-                  timestampString = "582115996.397007"
+                  timestampString = "581590434.529189"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "86"
                   endingLineNumber = "86"
-                  offsetFromSymbolStart = "281">
+                  offsetFromSymbolStart = "260">
                </Location>
                <Location
-                  uuid = "3F45E7A1-42D4-48FE-9CD9-235744D63396 - e75c599718529e02"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1300,15 +1220,14 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-accessors.mm"
-                  timestampString = "582115996.398755"
+                  timestampString = "581590434.532637"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "86"
                   endingLineNumber = "86"
-                  offsetFromSymbolStart = "188">
+                  offsetFromSymbolStart = "167">
                </Location>
                <Location
-                  uuid = "3F45E7A1-42D4-48FE-9CD9-235744D63396 - 9f9bde854dc5c64c"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1316,15 +1235,14 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-accessors.mm"
-                  timestampString = "582115996.400299"
+                  timestampString = "581590434.5364799"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "86"
                   endingLineNumber = "86"
-                  offsetFromSymbolStart = "188">
+                  offsetFromSymbolStart = "167">
                </Location>
                <Location
-                  uuid = "3F45E7A1-42D4-48FE-9CD9-235744D63396 - bc5140e0f5dd2063"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1332,15 +1250,14 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-accessors.mm"
-                  timestampString = "582115996.4019181"
+                  timestampString = "581590434.540436"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "86"
                   endingLineNumber = "86"
-                  offsetFromSymbolStart = "188">
+                  offsetFromSymbolStart = "167">
                </Location>
                <Location
-                  uuid = "3F45E7A1-42D4-48FE-9CD9-235744D63396 - ccd88beaeb6f82ad"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1348,12 +1265,12 @@
                   moduleName = "libobjc.A.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-accessors.mm"
-                  timestampString = "582115996.403518"
+                  timestampString = "581590434.543972"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "86"
                   endingLineNumber = "86"
-                  offsetFromSymbolStart = "188">
+                  offsetFromSymbolStart = "167">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1361,7 +1278,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3C36C7A3-DF03-4C68-A324-1ECD241CDFB2"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -1372,57 +1288,6 @@
             startingLineNumber = "1234"
             endingLineNumber = "1234"
             landmarkName = "acceptOptimizedReturn()"
-            landmarkType = "9">
-            <Locations>
-               <Location
-                  uuid = "3C36C7A3-DF03-4C68-A324-1ECD241CDFB2 - 741b8cca38e832d5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "objc_retainAutoreleasedReturnValue"
-                  moduleName = "libobjc.A.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-object.h"
-                  timestampString = "582115996.406391"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1234"
-                  endingLineNumber = "1234"
-                  offsetFromSymbolStart = "37">
-               </Location>
-               <Location
-                  uuid = "3C36C7A3-DF03-4C68-A324-1ECD241CDFB2 - 1be1f3fc4bcbbf43"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "objc_unsafeClaimAutoreleasedReturnValue"
-                  moduleName = "libobjc.A.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gavinhu/Desktop/Github/RunTime-750/runtime/objc-object.h"
-                  timestampString = "582115996.407949"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1234"
-                  endingLineNumber = "1234"
-                  offsetFromSymbolStart = "37">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "904A8D7B-9B9E-4E08-9891-406640201FFF"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "runtime/objc-class.mm"
-            timestampString = "591374518.84434"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "779"
-            endingLineNumber = "779"
-            landmarkName = "class_getMethodImplementation(Class cls, SEL sel)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
